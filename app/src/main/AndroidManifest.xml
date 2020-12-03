@@ -17,7 +17,7 @@
         </activity>
 
         <activity
-            android:name=".front.RealEstateList"
+            android:name=".RealEstateList"
             android:label=""/>
     </application>
 
