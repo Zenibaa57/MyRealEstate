@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         login.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, RealEstateList.class);
+            Intent intent = new Intent(MainActivity.this, PropertyListActivity.class);
             startActivity(intent);
         });
     }

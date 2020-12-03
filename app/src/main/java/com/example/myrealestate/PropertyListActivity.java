@@ -9,10 +9,21 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myrealestate.R;
+import com.example.myrealestate.adapter.PropertyAdapter;
+import com.example.myrealestate.models.Property;
+import com.example.myrealestate.repository.PropertyRepository;
+import com.example.myrealestate.viewmodels.PropertyViewModel;
 
-public class RealEstateList extends AppCompatActivity {
+import java.util.List;
+
+
+public class PropertyListActivity extends AppCompatActivity {
+
+     private PropertyViewModel propertyViewModel;
+     private RecyclerView recyclerViewProperties;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +33,8 @@ public class RealEstateList extends AppCompatActivity {
         Window window = this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.red));
         setContentView(R.layout.real_estate_list);
+
+         propertyViewModel =new ViewModelProvider(this).get(PropertyViewModel.class);
     }
 
     @Override
@@ -36,5 +49,11 @@ public class RealEstateList extends AppCompatActivity {
     {
         //Boite de dialogue lors de la suppression
         return super.onOptionsItemSelected(item);
+    }
+    private void initList()
+    {
+      //  final List<Property> properties = PropertyRepository.getInstance(this).getCity();
+    //    final PropertyAdapter propertyAdapter = new PropertyAdapter(properties);
+   //     recyclerViewProperties.setAdapter(propertyAdapter);
     }
 }
