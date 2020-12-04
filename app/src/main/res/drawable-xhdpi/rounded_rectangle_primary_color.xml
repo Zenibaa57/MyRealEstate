@@ -5,7 +5,7 @@
 
     <!-- fill/color -->
     <solid
-        android:color="@color/red"/>
+        android:color="@color/blue"/>
 
     <!-- Control the width and height of the shape -->
     <size
@@ -15,8 +15,8 @@
     <!-- Control the radius of each corners -->
     <corners
         android:topLeftRadius="15dp"
-        android:topRightRadius="15dp"
-        android:bottomRightRadius="15dp"
+        android:topRightRadius="0dp"
+        android:bottomRightRadius="0dp"
         android:bottomLeftRadius="15dp" />
 
 </shape>
