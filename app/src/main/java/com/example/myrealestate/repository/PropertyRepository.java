@@ -2,6 +2,7 @@ package com.example.myrealestate.repository;
 
 import android.content.Context;
 
+import com.example.myrealestate.database.MyRealEstateDatabase;
 import com.example.myrealestate.models.Property;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public final class PropertyRepository {
 
     private static volatile PropertyRepository instance;
+    private MyRealEstateDatabase myRealEstateDatabase;
 
     public PropertyRepository(Context context) {
     }
@@ -23,24 +25,23 @@ public final class PropertyRepository {
         return instance;
     }
 
-//    public List<Property> getProperties()
-//    {
-//        return cityWeatherDatabases.cityWeatherDao().getCity();
-//    }
-//
-//    public void addCity(Property city)
-//    {
-//        cityWeatherDatabases.cityWeatherDao().addCity(city);
-//    }
-//
-//
-//    public void deleteCity(Property city)
-//    {
-//        cityWeatherDatabases.cityWeatherDao().deleteByName(city.cityName);
-//    }
-//
-//    public void updateCity(CityWeather city) {
-//        cityWeatherDatabases.cityWeatherDao().updateCity(city.cityName,city.temp,city.feelsLike,
-//                city.tempMin,city.tempMax,city.icon,city.requestTime);
-//    }
+    public List<Property> getProperties()
+    {
+        return myRealEstateDatabase.propertyDao().getProperties();
+    }
+
+    public void addCity(Property property)
+    {
+        myRealEstateDatabase.propertyDao().addProperty(property);
+    }
+
+
+    public void deleteCity(Property property)
+    {
+        myRealEstateDatabase.propertyDao().deleteByName(property.type);
+    }
+
+    public void updateCity(Property property) {
+        myRealEstateDatabase.propertyDao().updateProperty();
+    }
 }

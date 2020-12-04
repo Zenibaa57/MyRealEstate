@@ -1,4 +1,9 @@
 package com.example.myrealestate.dao;
 
-public interface PropertyDao {
+import com.example.myrealestate.service.IPropertyService;
+
+public interface PropertyDao extends IPropertyService {
+
+    //Requêtes de la BDD, interface (contrat)
+
 }
