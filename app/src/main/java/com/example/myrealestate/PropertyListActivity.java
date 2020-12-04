@@ -52,8 +52,8 @@ public class PropertyListActivity extends AppCompatActivity {
     }
     private void initList()
     {
-      //  final List<Property> properties = PropertyRepository.getInstance(this).getCity();
-    //    final PropertyAdapter propertyAdapter = new PropertyAdapter(properties);
-   //     recyclerViewProperties.setAdapter(propertyAdapter);
+        final List<Property> properties = PropertyRepository.getInstance(this).getProperties();
+        final PropertyAdapter propertyAdapter = new PropertyAdapter(properties);
+        recyclerViewProperties.setAdapter(propertyAdapter);
     }
 }
