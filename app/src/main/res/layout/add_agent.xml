@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/light_grey"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:elevation="0dp">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -14,15 +14,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/addUser" />
+        app:srcCompat="@drawable/add_user" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="420dp"
         android:layout_height="341dp"
+        android:elevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,12 +32,16 @@
 
     <Button
         android:id="@+id/button"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button"
+        android:elevation="0dp"
         android:fontFamily="@font/typo_grotesk"
-        android:text="Button"
+        android:text="Create new profile"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="639dp"
-        style="?android:attr/borderlessButtonStyle"/>
+        tools:layout_editor_absoluteY="639dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
