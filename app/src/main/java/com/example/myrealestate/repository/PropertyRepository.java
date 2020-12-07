@@ -30,18 +30,18 @@ public final class PropertyRepository {
         return myRealEstateDatabase.propertyDao().getProperties();
     }
 
-    public void addCity(Property property)
+    public void addProperty(Property property)
     {
         myRealEstateDatabase.propertyDao().addProperty(property);
     }
 
 
-    public void deleteCity(Property property)
+    public void deleteProperty(Property property)
     {
         myRealEstateDatabase.propertyDao().deleteByName(property.type);
     }
 
-    public void updateCity(Property property) {
+    public void updateProperty(Property property) {
         myRealEstateDatabase.propertyDao().updateProperty();
     }
 }

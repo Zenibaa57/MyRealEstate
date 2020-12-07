@@ -40,4 +40,5 @@ public class Property implements Serializable {
         this.status = status;
         this.nameAgent = nameAgent;
     }
+
 }
