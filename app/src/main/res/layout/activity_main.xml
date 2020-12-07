@@ -8,18 +8,6 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/rectangles"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin"
-
-        app:srcCompat="@drawable/rectangle" />
-
-    <ImageView
         android:id="@+id/logo"
         android:layout_width="121dp"
         android:layout_height="118dp"
@@ -29,115 +17,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/signin"
         app:srcCompat="@drawable/my_real_estate" />
 
-    <TextView
-        android:id="@+id/signin"
-        android:layout_width="94dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/rectangles"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo" />
-
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Username"
-        android:textColor="@color/blue"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/editTextTextPersonName"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@+id/rectangles"
-        app:layout_constraintTop_toTopOf="@id/rectangles" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@id/password"
-        app:layout_constraintEnd_toEndOf="@+id/rectangles"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rectangles"
-        app:layout_constraintTop_toBottomOf="@id/user" />
-
-    <TextView
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Password"
-        android:textColor="@color/blue"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/editTextTextPersonPass"
-        app:layout_constraintStart_toStartOf="@+id/rectangles"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonPass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/rectangles"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/rectangles"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintBottom_toTopOf="@id/login"
-        tools:layout_editor_absoluteY="470dp" />
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_button"
-        android:text="Sign In"
-        app:layout_constraintStart_toStartOf="@id/rectangles"
-        app:layout_constraintEnd_toEndOf="@id/rectangles"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonPass"
-        app:layout_constraintBottom_toTopOf="@id/infos"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="557dp" />
-
-    <TextView
-        android:id="@+id/infos"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="Don't have an account ?"
-        android:textColor="@color/grey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/signup"
-        app:layout_constraintStart_toStartOf="@id/rectangles"
-        app:layout_constraintTop_toBottomOf="@id/login" />
-
-    <TextView
-        android:id="@+id/signup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:background="#00FFFFFF"
-        android:text="SignUp"
-        android:textColor="@color/red"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/infos"
-        app:layout_constraintTop_toBottomOf="@id/login"
-        app:rippleColor="#00FFFFFF" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

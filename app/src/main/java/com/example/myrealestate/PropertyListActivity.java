@@ -34,7 +34,7 @@ public class PropertyListActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.red));
         setContentView(R.layout.real_estate_list);
 
-         propertyViewModel =new ViewModelProvider(this).get(PropertyViewModel.class);
+         propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
     }
 
     @Override
