@@ -1,13 +1,17 @@
 package com.example.myrealestate;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myrealestate.adapter.PropertyAdapter;
 import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.models.Property;
+import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
 
@@ -24,7 +29,6 @@ import java.util.List;
 
 public class PropertyListActivity extends AppCompatActivity {
 
-    public static final String AGENT_FIRSTNAME = "agentFirstname";
      private PropertyViewModel propertyViewModel;
      private RecyclerView recyclerViewProperties;
      private String agentFirstname;
@@ -39,10 +43,8 @@ public class PropertyListActivity extends AppCompatActivity {
         Window window = this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.red));
         setContentView(R.layout.real_estate_list);
-        final Agent agent = (Agent) getIntent().getSerializableExtra(PropertyListActivity.AGENT_FIRSTNAME);
-
         hello = findViewById(R.id.hello);
-        hello.setText( getResources().getString(R.string.hello)+" "+ agent.firstname);
+        restoreUserAgentProfile();
 
 
          propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
@@ -59,6 +61,22 @@ public class PropertyListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
         //Boite de dialogue lors de la suppression
+        if (item.getItemId() == R.id.quit)
+        {
+            new AlertDialog.Builder(this)
+                    .setTitle("WARNINGS!")
+                    .setMessage("Are you sure you want to sign out?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+
+                        final Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        UserPreferences.saveUserAgentProfile(this, "");
+                        this.startActivity(intent);
+                    })
+                    .setNegativeButton("No", (dialog, id) -> dialog.cancel())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
         return super.onOptionsItemSelected(item);
     }
     private void initList()
@@ -67,4 +85,12 @@ public class PropertyListActivity extends AppCompatActivity {
         final PropertyAdapter propertyAdapter = new PropertyAdapter(properties);
         recyclerViewProperties.setAdapter(propertyAdapter);*/
     }
+
+    private void restoreUserAgentProfile()
+    {
+        final String userLogin = UserPreferences.getUserAgentProfile(this);
+        if (TextUtils.isEmpty(userLogin) == false) {
+            hello.setText("Hello " +userLogin); }
+    }
+
 }

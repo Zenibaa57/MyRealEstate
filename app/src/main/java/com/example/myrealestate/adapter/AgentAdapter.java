@@ -16,6 +16,7 @@ import com.example.myrealestate.MainActivity;
 import com.example.myrealestate.PropertyListActivity;
 import com.example.myrealestate.R;
 import com.example.myrealestate.models.Agent;
+import com.example.myrealestate.preference.UserPreferences;
 
 import java.util.List;
 
@@ -56,10 +57,12 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
             itemView.setOnClickListener(v -> {
 
                 final Intent intent = new Intent(itemView.getContext(), PropertyListActivity.class);
-                intent.putExtra(PropertyListActivity.AGENT_FIRSTNAME, agent);
                // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                UserPreferences.saveUserAgentProfile(itemView.getContext(), agent.firstname);
                 itemView.getContext().startActivity(intent);
                 activity.finish();
+
+
             });
         }
     }

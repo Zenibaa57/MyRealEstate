@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.myrealestate.adapter.AgentAdapter;
 import com.example.myrealestate.models.Agent;
+import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
 
 import java.util.List;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        RealEstateRepository.getInstance(this).addAgent(new Agent("Anatoli","Karpov","Male","Business Man"));
 
         initList();
+        checkPreference();
     }
 
     private void initList()
@@ -46,4 +49,15 @@ public class MainActivity extends AppCompatActivity {
         final AgentAdapter agentAdapter = new AgentAdapter(agentList, this);
         agentRecyclerview.setAdapter(agentAdapter);
     }
+
+    private void checkPreference()
+    {
+        final String userLogin = UserPreferences.getUserAgentProfile(this);
+        if (!userLogin.equals("")) {
+            final Intent intent = new Intent(this, PropertyListActivity.class);
+            this.startActivity(intent);
+           finish();
+        }
+    }
+
 }
