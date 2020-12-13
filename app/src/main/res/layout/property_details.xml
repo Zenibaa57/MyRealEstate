@@ -11,24 +11,25 @@
         android:id="@+id/cardGarage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_rectangle"
+        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="@color/card_selector"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:layout_constraintEnd_toStartOf="@id/cardHouse"
         app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintBottom_toTopOf="@id/cardSpecification"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread">
+        app:layout_constraintVertical_chainStyle="packed">
 
         <ImageView
             android:id="@+id/garage"
             android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_height="70dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/garage" />
     </androidx.cardview.widget.CardView>
 
@@ -36,10 +37,11 @@
         android:id="@+id/cardHouse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_rectangle"
+        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="@color/card_selector"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/cardSpecification"
         app:layout_constraintEnd_toStartOf="@id/cardBuilding"
         app:layout_constraintStart_toEndOf="@id/cardGarage"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,11 +49,11 @@
         <ImageView
             android:id="@+id/house"
             android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_height="70dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/house" />
     </androidx.cardview.widget.CardView>
 
@@ -59,10 +61,11 @@
         android:id="@+id/cardBuilding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_rectangle"
+        app:cardCornerRadius="15dp"
         app:cardBackgroundColor="@color/card_selector"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/cardSpecification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardHouse"
         app:layout_constraintTop_toTopOf="parent">
@@ -70,25 +73,24 @@
         <ImageView
             android:id="@+id/building"
             android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_height="70dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/building" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardCaracteristics"
+        android:id="@+id/cardSpecification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded_rectangle"
+        app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/cardLocation"
+        app:layout_constraintBottom_toTopOf="@id/cardDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardHouse">
@@ -104,9 +106,8 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk_light"
                 android:text="Specifications"
                 android:textSize="22sp" />
@@ -129,116 +130,18 @@
                     app:srcCompat="@drawable/dollar" />
 
                 <EditText
-                    android:id="@+id/editTextNumberDecimal2"
+                    android:id="@+id/price"
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="2"
                     android:ems="10"
-                    android:fontFamily="@font/typo_grotesk"
+                    android:fontFamily="sans-serif"
                     android:hint="Price"
                     android:inputType="numberDecimal"
                     android:textSize="16sp" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/areaLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/area" />
-
-                <EditText
-                    android:id="@+id/editTextNumberDecimal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="2"
-                    android:ems="10"
-                    android:fontFamily="@font/typo_grotesk"
-                    android:hint="Surface area"
-                    android:inputType="numberDecimal"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/roomLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/room" />
-
-                <EditText
-                    android:id="@+id/editTextNumber2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="2"
-                    android:ems="10"
-                    android:fontFamily="@font/typo_grotesk"
-                    android:hint="Number of rooms"
-                    android:inputType="number"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded_rectangle"
-        app:cardElevation="0dp"
-        app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/cardDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardCaracteristics">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/typo_grotesk_light"
-                android:text="Location"
-                android:textSize="22sp" />
 
             <LinearLayout
                 android:id="@+id/locationLayout"
@@ -258,16 +161,77 @@
                     app:srcCompat="@drawable/address" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/address"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="2"
                     android:ems="10"
-                    android:fontFamily="@font/typo_grotesk"
+                    android:fontFamily="sans-serif"
                     android:hint="Address"
                     android:inputType="textPersonName" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/areaLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/area" />
+
+                <EditText
+                    android:id="@+id/surfaceArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:hint="Surface area"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/roomLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/room" />
+
+                <EditText
+                    android:id="@+id/numberOfRooms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:hint="Number of rooms"
+                    android:inputType="number"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -289,13 +253,14 @@
                     app:srcCompat="@drawable/longitude" />
 
                 <EditText
-                    android:id="@+id/editTextNumberDecimal4"
+                    android:id="@+id/longitude"
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="2"
                     android:ems="10"
+                    android:fontFamily="sans-serif"
                     android:hint="Longitude"
                     android:inputType="numberDecimal" />
 
@@ -308,12 +273,13 @@
                     app:srcCompat="@drawable/latitude" />
 
                 <EditText
-                    android:id="@+id/editTextNumberDecimal3"
+                    android:id="@+id/latitude"
                     android:layout_width="wrap_content"
-                    android:layout_height="38dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="2"
                     android:ems="10"
+                    android:fontFamily="sans-serif"
                     android:hint="Latitude"
                     android:inputType="numberDecimal" />
             </LinearLayout>
@@ -327,15 +293,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        android:background="@drawable/rounded_rectangle"
+        app:layout_constraintTop_toBottomOf="@id/cardSpecification"
+        app:layout_constraintBottom_toTopOf="@id/addProperty"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button"
-        app:layout_constraintTop_toBottomOf="@id/cardLocation">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -346,26 +311,30 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk_light"
                 android:text="Description"
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/descirption"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
-                android:fontFamily="@font/typo_grotesk"
+                android:fontFamily="sans-serif"
                 android:gravity="start|top"
                 android:inputType="textMultiLine" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/typo_grotesk_light"
                 android:text="This porperty is avaible " />
         </LinearLayout>
@@ -373,10 +342,9 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addProperty"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="30dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/typo_grotesk"
         android:text="ADD NEW PROPERTY"

@@ -23,6 +23,7 @@ import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class PropertyListActivity extends AppCompatActivity {
      private PropertyViewModel propertyViewModel;
      private RecyclerView recyclerViewProperties;
      private String agentFirstname;
-
+     private FloatingActionButton addProperty;
      private TextView hello;
 
     @Override
@@ -44,7 +45,13 @@ public class PropertyListActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.red));
         setContentView(R.layout.real_estate_list);
         hello = findViewById(R.id.hello);
+        addProperty = findViewById(R.id.addBusiness);
         restoreUserAgentProfile();
+
+        addProperty.setOnClickListener(view -> {
+            Intent intent = new Intent(PropertyListActivity.this, PropertyFormActivity.class);
+            startActivity(intent);
+        });
 
 
          propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);

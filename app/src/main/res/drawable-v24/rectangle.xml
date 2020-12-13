@@ -5,7 +5,7 @@
 
     <!-- fill/color -->
     <solid
-        android:color="#FFFFFF"/>
+        android:color="@color/light_grey"/>
 
     <!-- Control the width and height of the shape -->
     <size
