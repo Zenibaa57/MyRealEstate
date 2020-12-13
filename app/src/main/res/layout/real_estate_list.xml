@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/house"
+        android:id="@+id/garage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/hello"
@@ -30,7 +30,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/what"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/house" />
+        app:layout_constraintTop_toBottomOf="@id/garage" />
 
     <TextView
         android:id="@+id/what"

@@ -1,6 +1,5 @@
 package com.example.myrealestate.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +34,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             super(itemView);
             placeName = itemView.findViewById(R.id.placeName);
             placeLocation = itemView.findViewById(R.id.placeLocation);
-            house = itemView.findViewById(R.id.house);
+            house = itemView.findViewById(R.id.garage);
         }
 
         public void updateViewHolder(final Property properties) {
