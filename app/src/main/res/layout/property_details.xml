@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/typo_grotesk_light"
                 android:text="Specifications"
                 android:textSize="20sp" />
@@ -116,9 +116,11 @@
                 android:id="@+id/priceLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_grey_rectangle"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -126,19 +128,25 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="0"
                     app:srcCompat="@drawable/dollar" />
 
                 <EditText
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="2"
+                    android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
                     android:hint="Price"
                     android:inputType="numberDecimal"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -147,9 +155,11 @@
                 android:id="@+id/locationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_grey_rectangle"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -157,19 +167,26 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="0"
                     app:srcCompat="@drawable/address" />
 
                 <EditText
                     android:id="@+id/address"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="2"
+                    android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
                     android:hint="Address"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -177,9 +194,11 @@
                 android:id="@+id/areaLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_grey_rectangle"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -187,19 +206,25 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="0"
                     app:srcCompat="@drawable/area" />
 
                 <EditText
                     android:id="@+id/surfaceArea"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="2"
+                    android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
                     android:hint="Surface area"
                     android:inputType="numberDecimal"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -208,9 +233,11 @@
                 android:id="@+id/roomLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_grey_rectangle"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -218,19 +245,25 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="0"
                     app:srcCompat="@drawable/room" />
 
                 <EditText
                     android:id="@+id/numberOfRooms"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="2"
+                    android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
                     android:hint="Number of rooms"
                     android:inputType="number"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -238,10 +271,11 @@
                 android:id="@+id/positionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_grey_rectangle"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -249,20 +283,25 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="0"
                     app:srcCompat="@drawable/longitude" />
 
                 <EditText
                     android:id="@+id/longitude"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="2"
+                    android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
                     android:hint="Longitude"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary" />
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -275,13 +314,18 @@
                 <EditText
                     android:id="@+id/latitude"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="2"
+                    android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
                     android:hint="Latitude"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary" />
             </LinearLayout>
 
             <TextView
@@ -295,15 +339,19 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/descirption"
+                android:id="@+id/description"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:fontFamily="sans-serif"
                 android:gravity="start|top"
-                android:inputType="textMultiLine" />
+
+                android:inputType="textMultiLine"
+                android:textColorHighlight="@color/blue"
+                android:textColorLink="@color/blue"
+                android:textCursorDrawable="@drawable/cursor_primary" />
 
             <CheckBox
                 android:id="@+id/status"
@@ -311,6 +359,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/typo_grotesk_light"
                 android:text="This porperty is avaible " />
 
@@ -321,16 +370,17 @@
     <Button
         android:id="@+id/addProperty"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_button"
+        android:elevation="0dp"
         android:fontFamily="@font/typo_grotesk"
         android:text="ADD NEW PROPERTY"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/cardSpecification"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardSpecification" />
 </androidx.constraintlayout.widget.ConstraintLayout>

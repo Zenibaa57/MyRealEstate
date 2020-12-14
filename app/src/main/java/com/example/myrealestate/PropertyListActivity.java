@@ -34,7 +34,7 @@ public class PropertyListActivity extends AppCompatActivity {
      private RecyclerView recyclerViewProperties;
      private String agentFirstname;
      private FloatingActionButton addProperty;
-     private TextView hello;
+     private TextView what;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +42,9 @@ public class PropertyListActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.light_grey)));
         getSupportActionBar().setElevation(0);
         Window window = this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.red));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.light_grey));
         setContentView(R.layout.real_estate_list);
-        hello = findViewById(R.id.hello);
+        what = findViewById(R.id.what);
         addProperty = findViewById(R.id.addBusiness);
         restoreUserAgentProfile();
 
@@ -97,7 +97,7 @@ public class PropertyListActivity extends AppCompatActivity {
     {
         final String userLogin = UserPreferences.getUserAgentProfile(this);
         if (TextUtils.isEmpty(userLogin) == false) {
-            hello.setText("Hello " +userLogin); }
+            what.setText(userLogin); }
     }
 
 }

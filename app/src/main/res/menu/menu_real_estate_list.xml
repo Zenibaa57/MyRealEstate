@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/quit"
+        android:icon="@drawable/ic_equalizer"
         android:title="quit"
-        android:icon="@drawable/ic_action_name"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
 </menu>
