@@ -1,5 +1,6 @@
 package com.example.myrealestate;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,10 +21,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private EditText address;
     private EditText surfaceArea;
     private EditText numberOfRooms;
-    private EditText latitude;
-    private EditText longitude;
     private EditText description;
-    private CheckBox status;
 
     private String sType;
     private long lPrice;
@@ -41,10 +39,10 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setElevation(0);
         Window window = this.getWindow();
-        getSupportActionBar().hide();
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.light_grey));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.blue));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.light_grey)));
+        getSupportActionBar().setElevation(0);
         setContentView(R.layout.property_details);
 
         cardGarage = findViewById(R.id.cardGarage);
@@ -54,14 +52,28 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         address = findViewById(R.id.address);
         surfaceArea = findViewById(R.id.surfaceArea);
         numberOfRooms = findViewById(R.id.numberOfRooms);
-        longitude = findViewById(R.id.longitude);
-        latitude = findViewById(R.id.latitude);
         description = findViewById(R.id.description);
-        status = findViewById(R.id.status);
         findViewById(R.id.addProperty).setOnClickListener(this);
 
         cardGarage.setOnClickListener(view -> {
             cardGarage.setSelected(true);
+            cardHouse.setSelected(false);
+            cardBuilding.setSelected(false);
+            sType="Garage";
+        });
+
+        cardHouse.setOnClickListener(view -> {
+            cardHouse.setSelected(true);
+            cardGarage.setSelected(false);
+            cardBuilding.setSelected(false);
+            sType="House";
+        });
+
+        cardBuilding.setOnClickListener(view -> {
+            cardGarage.setSelected(false);
+            cardHouse.setSelected(false);
+            cardBuilding.setSelected(true);
+            sType="Building";
         });
     }
 

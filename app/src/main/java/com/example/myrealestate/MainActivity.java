@@ -33,16 +33,14 @@ public class MainActivity extends AppCompatActivity {
         checkPreference();
     }
 
-    private void initList()
-    {
+    private void initList() {
         agentViewModel.agents.observe(this, agents -> {
-            final AgentAdapter agentAdapter = new AgentAdapter(agents);
+            final AgentAdapter agentAdapter = new AgentAdapter(agents,this);
             agentRecyclerview.setAdapter(agentAdapter);
         });
     }
 
-    private void checkPreference()
-    {
+    private void checkPreference() {
         final String userLogin = UserPreferences.getUserAgentProfile(this);
         if ( !TextUtils.isEmpty(userLogin)) {
             final Intent intent = new Intent(this, PropertyListActivity.class);

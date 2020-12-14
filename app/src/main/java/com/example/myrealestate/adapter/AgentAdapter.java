@@ -1,6 +1,7 @@
 package com.example.myrealestate.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +25,12 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
 
     //Adaptater pour bind vue et data (RecyclerView)
     private final List<Agent> agent;
-    private Activity activity;
+    private Context context;
 
-    public AgentAdapter(List<Agent> agent ) {
+
+    public AgentAdapter(List<Agent> agent, Context context ) {
         this.agent = agent;
+        this.context = context;
     }
 
     public static final class AgentViewHolder extends RecyclerView.ViewHolder {
@@ -43,13 +46,12 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
             job = itemView.findViewById(R.id.job);
         }
 
-        public void updateViewHolder(final Agent agent) {
+        public void updateViewHolder(final Agent agent, Context context) {
 
             //Mise à jour de des données
             name.setText(agent.firstname +" "+agent.lastname);
             job.setText(agent.job);
-//            ContextCompat.getDrawable(AgentAdapter.class,agent.getAvatar());
-//            avatar.setImageResource();
+            avatar.setImageResource( agent.getAvatar(context));
 
             itemView.setOnClickListener(v -> {
 
@@ -70,7 +72,7 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
 
     @Override
     public void onBindViewHolder(@NonNull AgentViewHolder holder, int position) {
-        holder.updateViewHolder(agent.get(position));
+        holder.updateViewHolder(agent.get(position),context);
     }
 
     @Override

@@ -31,8 +31,6 @@ public class Agent implements Serializable {
     }
 
     public int getAvatar(Context context) {
-
-        Resources r = null;
-        return r.getIdentifier(sexe + "_avatar", "drawable", context.getPackageName());
+        return context.getResources().getIdentifier("ic_"+sexe + "_avatar", "drawable", context.getPackageName());
     }
 }

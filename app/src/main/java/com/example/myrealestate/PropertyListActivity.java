@@ -55,15 +55,12 @@ public class PropertyListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
          propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        //Menu "icone exit"
         getMenuInflater().inflate(R.menu.menu_real_estate_list, menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -73,19 +70,7 @@ public class PropertyListActivity extends AppCompatActivity {
         //Boite de dialogue lors de la suppression
         if (item.getItemId() == R.id.quit)
         {
-            new AlertDialog.Builder(this)
-                    .setTitle("WARNINGS!")
-                    .setMessage("Are you sure you want to sign out?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
 
-                        final Intent intent = new Intent(this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        UserPreferences.saveUserAgentProfile(this, "");
-                        this.startActivity(intent);
-                    })
-                    .setNegativeButton("No", (dialog, id) -> dialog.cancel())
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
         } else if (item.getItemId() == android.R.id.home){
             new AlertDialog.Builder(this)
                     .setTitle("WARNINGS!")

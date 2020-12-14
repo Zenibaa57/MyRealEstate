@@ -37,24 +37,21 @@ public final class RealEstateRepository {
                 super.onCreate(db);
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Elisabeth','HARMON','female','Business Woman');");
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Alexandre','BRANCOLINI','male','Business Man');");
-                db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Ludovic','ROLAND','male','Business Man');");
+                db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Ludovic','ROLAND','male','Chief Executive Officer');");
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Mohammed','CHAKOUCH','male','Business Man');");
             }
         }).build();
     }
 
-    public void addProperty(Property property)
-    {
+    public void addProperty(Property property) {
         myRealEstateDatabase.propertyDao().addProperty(property);
     }
 
-    public LiveData<List<Agent>> getAgent()
-    {
+    public LiveData<List<Agent>> getAgent() {
         return myRealEstateDatabase.agentDao().getAgent();
     }
 
-    public void addAgent(Agent agent)
-    {
+    public void addAgent(Agent agent) {
         myRealEstateDatabase.agentDao().addAgent(agent);
     }
 
