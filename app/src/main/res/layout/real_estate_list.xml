@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/typo_grotesk"
-        android:text="What place are you looking for ?"
+        android:text="@string/places"
         android:textColor="@color/grey"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/realEstateList"

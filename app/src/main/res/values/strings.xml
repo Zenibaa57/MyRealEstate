@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">MyRealEstate</string>
     <string name="hello">Hello</string>
+    <string name="spec">Specifications</string>
+    <string name="price">Price</string>
+    <string name="address">Address</string>
+    <string name="surface">Surface area</string>
+    <string name="rooms">Number of rooms</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="description">Description</string>
+    <string name="available">This property is available</string>
+    <string name="add_property">ADD NEW PROPERTY</string>
+    <string name="places">What place are you looking for ?</string>
 </resources>
