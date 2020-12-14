@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red"
+    android:background="@color/dark_blue"
     tools:context=".MainActivity">
 
     <ImageView
@@ -22,7 +22,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         app:cardBackgroundColor="@color/light_grey"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"

@@ -11,6 +11,8 @@ public abstract class UserPreferences {
 
     private static final String USER_PREFERENCES_KEY = "userPreference";
 
+    private UserPreferences() { }
+
     public static void saveUserAgentProfile(@NonNull Context context, @NonNull String login) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         final SharedPreferences.Editor editor = defaultSharedPreferences.edit();
@@ -23,6 +25,4 @@ public abstract class UserPreferences {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return defaultSharedPreferences.getString(UserPreferences.USER_PREFERENCES_KEY, null);
     }
-
-    private UserPreferences() { }
 }

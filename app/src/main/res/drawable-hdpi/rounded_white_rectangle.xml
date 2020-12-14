@@ -10,11 +10,13 @@
     <!-- Control the width and height of the shape -->
     <size
         android:layout_width="fill_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="fill_parent"/>
 
     <!-- Control the radius of each corners -->
     <corners
-        android:topLeftRadius="35dp"
-        android:topRightRadius="35dp" />
+        android:topLeftRadius="15dp"
+        android:topRightRadius="15dp"
+        android:bottomRightRadius="15dp"
+        android:bottomLeftRadius="15dp" />
 
 </shape>

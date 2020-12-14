@@ -11,5 +11,6 @@
     <string name="description">Description</string>
     <string name="available">This property is available</string>
     <string name="add_property">ADD NEW PROPERTY</string>
+    <string name="morning">Good Morning!</string>
     <string name="places">What place are you looking for ?</string>
 </resources>

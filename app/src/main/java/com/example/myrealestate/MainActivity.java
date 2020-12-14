@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         Window window = this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.red));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.dark_blue));
         setContentView(R.layout.activity_main);
 
         agentRecyclerview= findViewById(R.id.agentRecyclerview);
