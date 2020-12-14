@@ -13,7 +13,6 @@ public class PropertyViewModel extends ViewModel {
     private MutableLiveData<List<Property>> vmProperty;
 
     public  void init(){
-
     }
 
     public LiveData<List<Property>> getProperty(){

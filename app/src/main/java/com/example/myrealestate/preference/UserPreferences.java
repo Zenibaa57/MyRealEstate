@@ -2,16 +2,15 @@ package com.example.myrealestate.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 public abstract class UserPreferences {
 
     private static final String USER_PREFERENCES_KEY = "userPreference";
 
-    private UserPreferences() { }
+    private UserPreferences() {}
 
     public static void saveUserAgentProfile(@NonNull Context context, @NonNull String login) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

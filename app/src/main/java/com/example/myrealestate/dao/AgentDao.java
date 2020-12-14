@@ -1,5 +1,6 @@
 package com.example.myrealestate.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -17,7 +18,7 @@ public interface AgentDao extends IAgentService {
 
 
     @Query("SELECT * FROM Agent")
-    List<Agent> getAgent();
+    LiveData<List<Agent>> getAgent();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addAgent(Agent agent);

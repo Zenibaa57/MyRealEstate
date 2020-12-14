@@ -20,7 +20,6 @@ public class Agent implements Serializable {
     public String lastname;
     public String sexe;
     public String job;
-    public int avatar;
 
     public Agent(String firstname, String lastname, String sexe, String job) {
 
@@ -31,10 +30,9 @@ public class Agent implements Serializable {
         this.job = job;
     }
 
-    public int getAvatar() {
+    public int getAvatar(Context context) {
 
         Resources r = null;
-        avatar = r.getIdentifier(sexe + "_avatar", "drawable", String.valueOf(this.getClass().getPackage()));
-        return avatar;
+        return r.getIdentifier(sexe + "_avatar", "drawable", context.getPackageName());
     }
 }

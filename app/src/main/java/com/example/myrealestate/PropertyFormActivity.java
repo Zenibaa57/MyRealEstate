@@ -60,9 +60,9 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         status = findViewById(R.id.status);
         findViewById(R.id.addProperty).setOnClickListener(this);
 
-        if (cardGarage.isSelected()){
-
-        }
+        cardGarage.setOnClickListener(view -> {
+            cardGarage.setSelected(true);
+        });
     }
 
     @Override

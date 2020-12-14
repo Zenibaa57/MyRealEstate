@@ -1,28 +1,22 @@
 package com.example.myrealestate;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrealestate.adapter.AgentAdapter;
-import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.preference.UserPreferences;
-import com.example.myrealestate.repository.RealEstateRepository;
-
-import java.util.List;
+import com.example.myrealestate.viewmodels.AgentViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView agentRecyclerview;
+    private AgentViewModel agentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,22 +27,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         agentRecyclerview= findViewById(R.id.agentRecyclerview);
-
-//        RealEstateRepository.getInstance(this).addAgent(new Agent("Beth","Harmon","female","Business Woman"));
-//        RealEstateRepository.getInstance(this).addAgent(new Agent("Boby","Fisher","Male","Business Man"));
-//        RealEstateRepository.getInstance(this).addAgent(new Agent("Magnus","Carlsen","Male","Business Man"));
-//        RealEstateRepository.getInstance(this).addAgent(new Agent("Garry","Kasparov","Male","Business Man"));
-//        RealEstateRepository.getInstance(this).addAgent(new Agent("Anatoli","Karpov","Male","Business Man"));
-
+        agentViewModel= new ViewModelProvider(this).get(AgentViewModel.class);
         initList();
         checkPreference();
     }
 
     private void initList()
     {
-        final List<Agent> agentList = RealEstateRepository.getInstance(this).getAgent();
-        final AgentAdapter agentAdapter = new AgentAdapter(agentList, this);
-        agentRecyclerview.setAdapter(agentAdapter);
+        agentViewModel.agents.observe(this, agents -> {
+            final AgentAdapter agentAdapter = new AgentAdapter(agents);
+            agentRecyclerview.setAdapter(agentAdapter);
+        });
     }
 
     private void checkPreference()

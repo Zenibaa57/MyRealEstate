@@ -2,7 +2,11 @@ package com.example.myrealestate.repository;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.myrealestate.database.MyRealEstateDatabase;
 import com.example.myrealestate.models.Agent;
@@ -25,8 +29,14 @@ public final class RealEstateRepository {
         return instance;
     }
 
-    public RealEstateRepository(Context context) {
-        myRealEstateDatabase = Room.databaseBuilder(context, MyRealEstateDatabase.class,"RealEstate-database").allowMainThreadQueries().build();
+    private RealEstateRepository(Context context) {
+        myRealEstateDatabase = Room.databaseBuilder(context, MyRealEstateDatabase.class,"RealEstate-database").allowMainThreadQueries().addCallback(new RoomDatabase.Callback() {
+            @Override
+            public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                super.onCreate(db);
+            //    db.execSQL("INSERT INTO Agent");
+            }
+        }).build();
     }
 
     public void addProperty(Property property)
@@ -34,7 +44,7 @@ public final class RealEstateRepository {
         myRealEstateDatabase.propertyDao().addProperty(property);
     }
 
-    public List<Agent> getAgent()
+    public LiveData<List<Agent>> getAgent()
     {
         return myRealEstateDatabase.agentDao().getAgent();
     }

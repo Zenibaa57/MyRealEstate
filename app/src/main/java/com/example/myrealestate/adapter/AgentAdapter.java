@@ -26,18 +26,15 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
     private final List<Agent> agent;
     private Activity activity;
 
-    public AgentAdapter(List<Agent> agent, Activity activity) {
+    public AgentAdapter(List<Agent> agent ) {
         this.agent = agent;
-        this.activity = activity;
     }
 
-    public final class AgentViewHolder extends RecyclerView.ViewHolder {
+    public static final class AgentViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView avatar;
         private final TextView name;
         private final TextView job;
-
-
 
         public AgentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,12 +54,9 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
             itemView.setOnClickListener(v -> {
 
                 final Intent intent = new Intent(itemView.getContext(), PropertyListActivity.class);
-               // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                 UserPreferences.saveUserAgentProfile(itemView.getContext(), agent.firstname);
                 itemView.getContext().startActivity(intent);
-                activity.finish();
-
-
             });
         }
     }
