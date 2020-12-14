@@ -109,7 +109,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/typo_grotesk_light"
-                android:text="Specifications"
+                android:text="@string/spec"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -142,7 +142,7 @@
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="Price"
+                    android:hint="@string/price"
                     android:inputType="numberDecimal"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -181,12 +181,13 @@
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="Address"
+                    android:hint="@string/address"
                     android:inputType="textPersonName"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
                     android:textCursorDrawable="@drawable/cursor_primary"
                     android:textSize="16sp" />
+
 
             </LinearLayout>
 
@@ -220,7 +221,7 @@
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="Surface area"
+                    android:hint="@string/surface"
                     android:inputType="numberDecimal"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -259,7 +260,7 @@
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="Number of rooms"
+                    android:hint="@string/rooms"
                     android:inputType="number"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -297,7 +298,8 @@
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="Longitude"
+
+                    android:hint="@string/longitude"
                     android:inputType="numberDecimal"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -321,11 +323,12 @@
                     android:background="@null"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="Latitude"
+                    android:hint="@string/latitude"
                     android:inputType="numberDecimal"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
                     android:textCursorDrawable="@drawable/cursor_primary" />
+
             </LinearLayout>
 
             <TextView
@@ -335,7 +338,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/typo_grotesk_light"
-                android:text="Description"
+                android:text="@string/description"
                 android:textSize="20sp" />
 
             <EditText
@@ -361,7 +364,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/typo_grotesk_light"
-                android:text="This porperty is avaible " />
+                android:text="@string/available" />
 
         </LinearLayout>
 
@@ -376,7 +379,7 @@
         android:background="@drawable/rounded_button"
         android:elevation="0dp"
         android:fontFamily="@font/typo_grotesk"
-        android:text="ADD NEW PROPERTY"
+        android:text="@string/add_property"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

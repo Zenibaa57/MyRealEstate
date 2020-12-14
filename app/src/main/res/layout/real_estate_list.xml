@@ -14,7 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/typo_grotesk_light"
-        android:text="Good Morning!"
+        android:text="@string/morning"
         android:textColor="@color/dark_grey"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@id/what"
@@ -64,7 +64,7 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:text="What place are you looking for ?"
+            android:text="@string/places"
             android:textColor="@color/grey" />
 
         <ImageButton
