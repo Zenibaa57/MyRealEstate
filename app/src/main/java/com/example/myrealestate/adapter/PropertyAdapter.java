@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myrealestate.R;
 import com.example.myrealestate.models.Property;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder> {
@@ -40,10 +41,9 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         public void updateViewHolder(final Property properties) {
 
             //Mise à jour de des données
-            placeName.setText(properties.type);
+       //     placeName.setText(properties.s);
             placeLocation.setText(properties.address);
         //    house.setImageResource();
-
             itemView.setOnClickListener(v -> {
 //                final Intent intent = new Intent(itemView.getContext(), CityWeatherInformation.class);
 //                intent.putExtra(CityWeatherInformation.CITY_NAME, city);

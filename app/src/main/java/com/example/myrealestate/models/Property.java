@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class Property implements Serializable {
 
     @PrimaryKey(autoGenerate = true) public int id;
-    public String type;
     public long price;
     public long surfaceArea;
     public int numberOfRoom;
@@ -19,15 +18,13 @@ public class Property implements Serializable {
     public long longitude;;
     public long dateOfTheCreationAdvert;
     public long dateOfTheUpdateAdvert;
-    public boolean status;
-    public String nameAgent;
 
-    public Property(String type, long price, long surfaceArea, int numberOfRoom, String description,
+
+    public Property(long price, long surfaceArea, int numberOfRoom, String description,
                     String address, long latitude, long longitude, long dateOfTheCreationAdvert,
-                    long dateOfTheUpdateAdvert, boolean status, String nameAgent)
+                    long dateOfTheUpdateAdvert)
     {
         id = 0;
-        this.type = type;
         this.price = price;
         this.surfaceArea = surfaceArea;
         this.numberOfRoom = numberOfRoom;
@@ -37,8 +34,6 @@ public class Property implements Serializable {
         this.longitude = longitude;
         this.dateOfTheCreationAdvert = dateOfTheCreationAdvert;
         this.dateOfTheUpdateAdvert = dateOfTheUpdateAdvert;
-        this.status = status;
-        this.nameAgent = nameAgent;
     }
 
 }

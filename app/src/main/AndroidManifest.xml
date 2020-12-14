@@ -18,7 +18,6 @@
 
         <activity
             android:name=".PropertyListActivity"
-            android:parentActivityName=".MainActivity"
             android:label=""/>
 
         <activity

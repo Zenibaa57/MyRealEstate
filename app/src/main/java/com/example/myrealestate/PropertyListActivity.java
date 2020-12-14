@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class PropertyListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.light_grey)));
         getSupportActionBar().setElevation(0);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Window window = this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.light_grey));
         setContentView(R.layout.real_estate_list);
@@ -52,6 +54,7 @@ public class PropertyListActivity extends AppCompatActivity {
             Intent intent = new Intent(PropertyListActivity.this, PropertyFormActivity.class);
             startActivity(intent);
         });
+
 
 
          propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
@@ -83,7 +86,23 @@ public class PropertyListActivity extends AppCompatActivity {
                     .setNegativeButton("No", (dialog, id) -> dialog.cancel())
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        } else if (item.getItemId() == android.R.id.home){
+            new AlertDialog.Builder(this)
+                    .setTitle("WARNINGS!")
+                    .setMessage("Are you sure you want to sign out?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+
+                        final Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        UserPreferences.saveUserAgentProfile(this, "");
+                        this.startActivity(intent);
+                    })
+                    .setNegativeButton("No", (dialog, id) -> dialog.cancel())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
+
+
         return super.onOptionsItemSelected(item);
     }
     private void initList()
@@ -99,5 +118,6 @@ public class PropertyListActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(userLogin) == false) {
             what.setText(userLogin); }
     }
+
 
 }

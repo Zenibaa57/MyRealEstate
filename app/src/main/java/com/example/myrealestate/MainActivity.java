@@ -2,6 +2,7 @@ package com.example.myrealestate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void checkPreference()
     {
         final String userLogin = UserPreferences.getUserAgentProfile(this);
-        if (!userLogin.equals("")) {
+        if ( !TextUtils.isEmpty(userLogin)) {
             final Intent intent = new Intent(this, PropertyListActivity.class);
             this.startActivity(intent);
            finish();

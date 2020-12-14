@@ -30,11 +30,15 @@ public final class RealEstateRepository {
     }
 
     private RealEstateRepository(Context context) {
-        myRealEstateDatabase = Room.databaseBuilder(context, MyRealEstateDatabase.class,"RealEstate-database").allowMainThreadQueries().addCallback(new RoomDatabase.Callback() {
+
+        myRealEstateDatabase = Room.databaseBuilder(context, MyRealEstateDatabase.class,"RealEstate-database").allowMainThreadQueries().fallbackToDestructiveMigration().addCallback(new RoomDatabase.Callback() {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
-            //    db.execSQL("INSERT INTO Agent");
+                db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Elisabeth','HARMON','female','Business Woman');");
+                db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Alexandre','BRANCOLINI','male','Business Man');");
+                db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Ludovic','ROLAND','male','Business Man');");
+                db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Mohammed','CHAKOUCH','male','Business Man');");
             }
         }).build();
     }
