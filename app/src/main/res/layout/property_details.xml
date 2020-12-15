@@ -16,6 +16,7 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintBottom_toTopOf="@id/cardSpecification"
         app:layout_constraintEnd_toStartOf="@id/cardHouse"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,12 +30,12 @@
 
             <ImageView
                 android:id="@+id/garage"
-                android:layout_width="95dp"
+                android:layout_width="75dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
                 app:srcCompat="@drawable/garage" />
 
             <TextView
@@ -45,7 +46,8 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk"
                 android:gravity="center"
-                android:text="Garage" />
+                android:text="Garage"
+                android:textColor="@color/dark_blue" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -71,7 +73,7 @@
 
             <ImageView
                 android:id="@+id/house"
-                android:layout_width="95dp"
+                android:layout_width="75dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
@@ -87,7 +89,8 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk"
                 android:gravity="center"
-                android:text="House" />
+                android:text="House"
+                android:textColor="@color/dark_blue" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -113,7 +116,7 @@
 
             <ImageView
                 android:id="@+id/building"
-                android:layout_width="95dp"
+                android:layout_width="75dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
@@ -129,7 +132,8 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk"
                 android:gravity="center"
-                android:text="Apartment " />
+                android:text="Apartment "
+                android:textColor="@color/dark_blue" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -176,7 +180,7 @@
                 android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:fontFamily="sans-serif"
-                android:hint="$100.000"
+                android:hint="$300.000"
                 android:inputType="numberDecimal"
                 android:textColorHighlight="@color/blue"
                 android:textColorLink="@color/blue"
@@ -203,7 +207,7 @@
                 android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:fontFamily="sans-serif"
-                android:hint="182.6m²"
+                android:hint="182.6"
                 android:inputType="numberDecimal"
                 android:textColorHighlight="@color/blue"
                 android:textColorLink="@color/blue"
@@ -266,7 +270,7 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"

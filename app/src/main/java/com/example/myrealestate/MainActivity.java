@@ -1,11 +1,14 @@
 package com.example.myrealestate;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         agentViewModel= new ViewModelProvider(this).get(AgentViewModel.class);
         initList();
         checkPreference();
+        enableMyLocation();
     }
 
     private void initList() {
@@ -49,4 +53,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            },100);
+        }
+    }
 }

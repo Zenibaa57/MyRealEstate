@@ -3,6 +3,7 @@ package com.example.myrealestate;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.example.myrealestate.Location.GeoLocation;
 import com.example.myrealestate.preference.UserPreferences;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 
 public class PropertyFormActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,15 +40,15 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private TextView textViewBuilding;
 
     private String sType;
-    private long lPrice;
-    private long lSurfaceArea;
+    private double lPrice;
+    private double lSurfaceArea;
     private int iNumberOfRoom;
     private String sDescription;
     private String sAddress;;
-    private long lLatitude;;
-    private long lLongitude;;
-    private long lDateOfTheCreationAdvert;
-    private long lDateOfTheUpdateAdvert;
+    private double lLatitude;;
+    private double lLongitude;;
+    private Timestamp lDateOfTheCreationAdvert;
+    private Timestamp lDateOfTheUpdateAdvert;
     private boolean bStatus;
     private String sNameAgent;
 
@@ -103,9 +108,28 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
 
+        getViewInformation();
+        
 //        RealEstateRepository.getInstance(this).addProperty(new Property(sType,lPrice,lSurfaceArea,
 //                iNumberOfRoom,sDescription,sAddress,lLatitude,lLongitude,lDateOfTheCreationAdvert,
 //                lDateOfTheUpdateAdvert,bStatus,sNameAgent));
+    }
+
+    private void getViewInformation() {
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        lPrice = Double.parseDouble(String.valueOf(price.getText()));
+        lSurfaceArea = Double.parseDouble(String.valueOf(surfaceArea.getText()));
+        iNumberOfRoom = Integer.parseInt(String.valueOf(numberOfRooms.getText()));
+        sDescription = String.valueOf(description.getText());
+        sAddress = String.valueOf(address.getText());
+        ArrayList location = GeoLocation.getAddress(sAddress,this);
+        lLatitude = (double) location.get(0);
+        lLongitude = (double) location.get(1);
+        lDateOfTheCreationAdvert = timestamp;
+        lDateOfTheUpdateAdvert = timestamp;
+        bStatus = true;
+        sNameAgent = UserPreferences.getUserAgentProfile(this);
     }
 
     @Override

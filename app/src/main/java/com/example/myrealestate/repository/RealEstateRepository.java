@@ -40,8 +40,8 @@ public final class RealEstateRepository {
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Ludovic','ROLAND','male','Chief Executive Officer');");
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Mohammed','CHAKOUCH','male','Business Man');");
 
-                db.execSQL("INSERT Into PropertyStatus ('isAvaible') VALUES (TRUE);");
-                db.execSQL("INSERT Into PropertyStatus ('isAvaible') VALUES (FALSE);");
+                db.execSQL("INSERT Into PropertyStatus ('isAvaible') VALUES (1);");
+                db.execSQL("INSERT Into PropertyStatus ('isAvaible') VALUES (0);");
 
                 db.execSQL("INSERT Into Type ('type') VALUES ('Garage');");
                 db.execSQL("INSERT Into Type ('type') VALUES ('House');");
