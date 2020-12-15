@@ -9,5 +9,4 @@ public interface IAgentService {
 
     LiveData<List<Agent>> getAgent();
 
-    void addAgent(Agent agent);
 }

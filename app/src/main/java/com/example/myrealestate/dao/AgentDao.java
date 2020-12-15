@@ -15,12 +15,6 @@ import java.util.List;
 public interface AgentDao extends IAgentService {
 
     //Requêtes de la BDD, interface (contrat)
-
-
     @Query("SELECT * FROM Agent")
     LiveData<List<Agent>> getAgent();
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void addAgent(Agent agent);
-
 }

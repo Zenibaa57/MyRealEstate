@@ -1,13 +1,10 @@
 package com.example.myrealestate.models;
 
 import android.content.Context;
-import android.content.res.Resources;
 
-import androidx.core.content.ContextCompat;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.io.InputStream;
 import java.io.Serializable;
 
 
@@ -20,6 +17,7 @@ public class Agent implements Serializable {
     public String lastname;
     public String sexe;
     public String job;
+
 
     public Agent(String firstname, String lastname, String sexe, String job) {
 

@@ -39,6 +39,13 @@ public final class RealEstateRepository {
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Alexandre','BRANCOLINI','male','Business Man');");
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Ludovic','ROLAND','male','Chief Executive Officer');");
                 db.execSQL("INSERT Into Agent ('firstname','lastname','sexe','job') VALUES ('Mohammed','CHAKOUCH','male','Business Man');");
+
+                db.execSQL("INSERT Into PropertyStatus ('isAvaible') VALUES (TRUE);");
+                db.execSQL("INSERT Into PropertyStatus ('isAvaible') VALUES (FALSE);");
+
+                db.execSQL("INSERT Into Type ('type') VALUES ('Garage');");
+                db.execSQL("INSERT Into Type ('type') VALUES ('House');");
+                db.execSQL("INSERT Into Type ('type') VALUES ('Apartment');");
             }
         }).build();
     }
@@ -50,11 +57,6 @@ public final class RealEstateRepository {
     public LiveData<List<Agent>> getAgent() {
         return myRealEstateDatabase.agentDao().getAgent();
     }
-
-    public void addAgent(Agent agent) {
-        myRealEstateDatabase.agentDao().addAgent(agent);
-    }
-
 
 
 }

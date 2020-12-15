@@ -10,11 +10,11 @@ import java.io.Serializable;
 
         @PrimaryKey(autoGenerate = true)
         public int id;
-        public boolean status;
+        public boolean isAvaible;
 
-        public PropertyStatus(int id, boolean status) {
+        public PropertyStatus(int id, boolean isAvaible) {
             this.id = 0;
-            this.status = status;
+            this.isAvaible = isAvaible;
         }
     }
 

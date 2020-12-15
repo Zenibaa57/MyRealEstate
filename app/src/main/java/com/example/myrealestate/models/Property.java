@@ -1,11 +1,25 @@
 package com.example.myrealestate.models;
 
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity
+@Entity(tableName = "Property",
+        foreignKeys = {
+                @ForeignKey(entity = Type.class,
+                        parentColumns = "id",
+                        childColumns = "typeId"),
+                @ForeignKey(entity = PropertyStatus.class,
+                        parentColumns = "id",
+                        childColumns = "propertyStatusId"),
+                @ForeignKey(entity = Agent.class,
+                         parentColumns = "id",
+                        childColumns = "agentId"),
+        })
+
 public class Property implements Serializable {
 
     @PrimaryKey(autoGenerate = true) public int id;
@@ -18,12 +32,14 @@ public class Property implements Serializable {
     public long longitude;;
     public long dateOfTheCreationAdvert;
     public long dateOfTheUpdateAdvert;
+    public int typeId;
+    public int propertyStatusId;
+    public int agentId;
 
 
     public Property(long price, long surfaceArea, int numberOfRoom, String description,
                     String address, long latitude, long longitude, long dateOfTheCreationAdvert,
-                    long dateOfTheUpdateAdvert)
-    {
+                    long dateOfTheUpdateAdvert) {
         id = 0;
         this.price = price;
         this.surfaceArea = surfaceArea;
@@ -35,5 +51,4 @@ public class Property implements Serializable {
         this.dateOfTheCreationAdvert = dateOfTheCreationAdvert;
         this.dateOfTheUpdateAdvert = dateOfTheUpdateAdvert;
     }
-
 }
