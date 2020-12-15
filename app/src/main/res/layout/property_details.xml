@@ -22,15 +22,32 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <ImageView
-            android:id="@+id/garage"
-            android:layout_width="95dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="15dp"
-            app:srcCompat="@drawable/garage" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/garage"
+                android:layout_width="95dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                app:srcCompat="@drawable/garage" />
+
+            <TextView
+                android:id="@+id/textviewGarage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/typo_grotesk"
+                android:gravity="center"
+                android:text="Garage" />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -47,15 +64,32 @@
         app:layout_constraintStart_toEndOf="@id/cardGarage"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/house"
-            android:layout_width="95dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/house" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/house"
+                android:layout_width="95dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                app:srcCompat="@drawable/house" />
+
+            <TextView
+                android:id="@+id/textviewHouse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/typo_grotesk"
+                android:gravity="center"
+                android:text="House" />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -72,15 +106,32 @@
         app:layout_constraintStart_toEndOf="@id/cardHouse"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/building"
-            android:layout_width="95dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/building" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/building"
+                android:layout_width="95dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                app:srcCompat="@drawable/building" />
+
+            <TextView
+                android:id="@+id/textviewBuilding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/typo_grotesk"
+                android:gravity="center"
+                android:text="Apartment " />
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -106,180 +157,124 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/typo_grotesk"
+                android:text="Price"
+                android:textColor="@color/dark_grey"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:hint="$100.000"
+                android:inputType="numberDecimal"
+                android:textColorHighlight="@color/blue"
+                android:textColorLink="@color/blue"
+                android:textCursorDrawable="@drawable/cursor_primary"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/typo_grotesk_light"
-                android:text="@string/spec"
-                android:textSize="20sp" />
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/typo_grotesk"
+                android:text="Surface area"
+                android:textColor="@color/dark_grey"
+                android:textSize="18sp" />
 
-            <LinearLayout
-                android:id="@+id/priceLayout"
+            <EditText
+                android:id="@+id/surfaceArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_grey_rectangle"
-                android:orientation="horizontal">
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:hint="182.6m²"
+                android:inputType="numberDecimal"
+                android:textColorHighlight="@color/blue"
+                android:textColorLink="@color/blue"
+                android:textCursorDrawable="@drawable/cursor_primary"
+                android:textSize="16sp" />
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/dollar" />
-
-                <EditText
-                    android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="2"
-                    android:background="@null"
-                    android:ems="10"
-                    android:fontFamily="sans-serif"
-                    android:hint="@string/price"
-                    android:inputType="numberDecimal"
-                    android:textColorHighlight="@color/blue"
-                    android:textColorLink="@color/blue"
-                    android:textCursorDrawable="@drawable/cursor_primary"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/locationLayout"
+            <TextView
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_grey_rectangle"
-                android:orientation="horizontal">
+                android:fontFamily="@font/typo_grotesk"
+                android:text="Number of Rooms"
+                android:textColor="@color/dark_grey"
+                android:textSize="18sp" />
 
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/address" />
-
-                <EditText
-                    android:id="@+id/address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="2"
-                    android:background="@null"
-                    android:ems="10"
-                    android:fontFamily="sans-serif"
-                    android:hint="@string/address"
-                    android:inputType="textPersonName"
-                    android:textColorHighlight="@color/blue"
-                    android:textColorLink="@color/blue"
-                    android:textCursorDrawable="@drawable/cursor_primary"
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/areaLayout"
+            <EditText
+                android:id="@+id/numberOfRooms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_grey_rectangle"
-                android:orientation="horizontal">
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:hint="4"
+                android:inputType="number"
+                android:textColorHighlight="@color/blue"
+                android:textColorLink="@color/blue"
+                android:textCursorDrawable="@drawable/cursor_primary"
+                android:textSize="16sp" />
 
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/area" />
-
-                <EditText
-                    android:id="@+id/surfaceArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="2"
-                    android:background="@null"
-                    android:ems="10"
-                    android:fontFamily="sans-serif"
-                    android:hint="@string/surface"
-                    android:inputType="numberDecimal"
-                    android:textColorHighlight="@color/blue"
-                    android:textColorLink="@color/blue"
-                    android:textCursorDrawable="@drawable/cursor_primary"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/roomLayout"
+            <TextView
+                android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_grey_rectangle"
-                android:orientation="horizontal">
+                android:fontFamily="@font/typo_grotesk"
+                android:text="Address"
+                android:textColor="@color/dark_grey"
+                android:textSize="18sp" />
 
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/room" />
-
-                <EditText
-                    android:id="@+id/numberOfRooms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="2"
-                    android:background="@null"
-                    android:ems="10"
-                    android:fontFamily="sans-serif"
-                    android:hint="@string/rooms"
-                    android:inputType="number"
-                    android:textColorHighlight="@color/blue"
-                    android:textColorLink="@color/blue"
-                    android:textCursorDrawable="@drawable/cursor_primary"
-                    android:textSize="16sp" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:fontFamily="sans-serif"
+                android:hint="101 Independence Avenue, S.E"
+                android:inputType="textPersonName"
+                android:textColorHighlight="@color/blue"
+                android:textColorLink="@color/blue"
+                android:textCursorDrawable="@drawable/cursor_primary"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/typo_grotesk_light"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/typo_grotesk"
                 android:text="@string/description"
-                android:textSize="20sp" />
+                android:textColor="@color/dark_grey"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/description"
@@ -291,6 +286,7 @@
                 android:fontFamily="sans-serif"
                 android:gravity="start|top"
 
+                android:hint="Insert Description"
                 android:inputType="textMultiLine"
                 android:textColorHighlight="@color/blue"
                 android:textColorLink="@color/blue"
@@ -313,6 +309,7 @@
         android:text="@string/add_property"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
+        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -61,14 +61,14 @@ public class PropertyListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_real_estate_list, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
         //Boite de dialogue lors de la suppression
-        if (item.getItemId() == R.id.quit)
+        if (item.getItemId() == R.id.settings)
         {
 
         } else if (item.getItemId() == android.R.id.home){
