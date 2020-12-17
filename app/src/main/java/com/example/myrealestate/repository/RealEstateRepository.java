@@ -64,12 +64,20 @@ public final class RealEstateRepository {
         return myRealEstateDatabase.typeDao().getTypeByName(type);
     }
 
+    public String getTypeById(int id) {
+        return myRealEstateDatabase.typeDao().getTypeById(id);
+    }
+
     public int getAgentNameByName(String firstname) {
         return myRealEstateDatabase.agentDao().getAgentNameByName(firstname);
     }
 
     public int getStatusByAvailability(boolean status) {
         return myRealEstateDatabase.propertyStatusDao().getStatusByAvailability(status);
+    }
+
+    public  LiveData<List<Property>> getProperty() {
+        return myRealEstateDatabase.propertyDao().getProperty();
     }
 
 

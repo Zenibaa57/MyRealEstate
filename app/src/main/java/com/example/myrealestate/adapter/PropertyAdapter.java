@@ -1,5 +1,6 @@
 package com.example.myrealestate.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,11 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
     //Adaptater pour bind vue et data (RecyclerView)
     private final List<Property> properties;
+    private Context context;
 
-    public PropertyAdapter(List<Property> properties) {
+    public PropertyAdapter(List<Property> properties, Context context ) {
         this.properties = properties;
+        this.context = context;
     }
 
     public final class PropertyViewHolder extends RecyclerView.ViewHolder {

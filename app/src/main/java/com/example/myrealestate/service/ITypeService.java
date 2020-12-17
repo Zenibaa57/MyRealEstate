@@ -7,4 +7,6 @@ import com.example.myrealestate.models.Type;
 public interface ITypeService {
 
     int getTypeByName(String type);
+
+    String getTypeById(int id);
 }

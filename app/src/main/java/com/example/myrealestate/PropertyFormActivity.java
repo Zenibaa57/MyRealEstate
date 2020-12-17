@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -61,7 +63,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private int idStatus;
     private int idNameAgent;
 
-    private TypeViewModel typeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,47 +87,63 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         findViewById(R.id.addProperty).setOnClickListener(this);
 
         cardGarage.setOnClickListener(view -> {
-            cardGarage.setSelected(true);
-            cardHouse.setSelected(false);
-            cardBuilding.setSelected(false);
-            sType="Garage";
-            textViewGarage.setTextColor(Color.parseColor("#FFFFFF"));
-            textViewHouse.setTextColor(getResources().getColor(R.color.dark_blue));
-            textViewBuilding.setTextColor(getResources().getColor(R.color.dark_blue));
+            initCard();
+            updateCard(cardGarage,textViewGarage,"Garage");
         });
 
         cardHouse.setOnClickListener(view -> {
-            cardHouse.setSelected(true);
-            cardGarage.setSelected(false);
-            cardBuilding.setSelected(false);
-            sType="House";
-            textViewHouse.setTextColor(Color.parseColor("#FFFFFF"));
-            textViewGarage.setTextColor(getResources().getColor(R.color.dark_blue));
-            textViewBuilding.setTextColor(getResources().getColor(R.color.dark_blue));
+            initCard();
+            updateCard(cardHouse,textViewHouse,"House");
         });
 
         cardBuilding.setOnClickListener(view -> {
-            cardGarage.setSelected(false);
-            cardHouse.setSelected(false);
-            cardBuilding.setSelected(true);
-            sType="Building";
-            textViewBuilding.setTextColor(Color.parseColor("#FFFFFF"));
-            textViewGarage.setTextColor(getResources().getColor(R.color.dark_blue));
-            textViewHouse.setTextColor(getResources().getColor(R.color.dark_blue));
+            initCard();
+            updateCard(cardBuilding,textViewBuilding,"Building");
         });
+    }
 
+    private void initCard(){
+        cardGarage.setSelected(false);
+        cardHouse.setSelected(false);
+        cardBuilding.setSelected(false);
+        textViewBuilding.setTextColor(getResources().getColor(R.color.dark_blue));
+        textViewGarage.setTextColor(getResources().getColor(R.color.dark_blue));
+        textViewHouse.setTextColor(getResources().getColor(R.color.dark_blue));
+    }
+
+    private void updateCard(CardView principalCardView, TextView principalTextView, String type){
+        principalCardView.setSelected(true);
+        principalTextView.setTextColor(Color.parseColor("#FFFFFF"));
+        sType=type;
     }
 
     @Override
     public void onClick(View view) {
-        getViewInformation();
-
-        RealEstateRepository.getInstance(this).addProperty(new Property(lPrice,lSurfaceArea,iNumberOfRoom,sDescription,sAddress,
-                lLatitude,lLongitude,lDateOfTheCreationAdvert,lDateOfTheUpdateAdvert,idType,idStatus,idNameAgent));
+        if (checkMandatoryField()) {
+            getViewInformation();
+            RealEstateRepository.getInstance(this).addProperty(new Property(lPrice, lSurfaceArea, iNumberOfRoom, sDescription, sAddress,
+                    lLatitude, lLongitude, lDateOfTheCreationAdvert, lDateOfTheUpdateAdvert, idType, idStatus, idNameAgent));
+            finish();
+        } else {
+            displayErrorMessage();
+        }
     }
 
-    private void initTypeViewModel() {
+    private boolean checkMandatoryField() {
 
+        boolean allFieldAreCompleted = false;
+
+        if ((cardGarage.isSelected() || cardHouse.isSelected() || cardBuilding.isSelected()) &&
+                !TextUtils.isEmpty(price.getText()) && !TextUtils.isEmpty(surfaceArea.getText())
+                && !TextUtils.isEmpty(address.getText()) && !TextUtils.isEmpty(numberOfRooms.getText())
+                && !TextUtils.isEmpty(description.getText()) ){
+           allFieldAreCompleted = true;
+        }
+        return allFieldAreCompleted;
+    }
+
+    private void displayErrorMessage(){
+        Toast.makeText(getApplicationContext(), "All field are required!", Toast.LENGTH_SHORT).show();
     }
 
     private void getViewInformation() {
@@ -149,8 +166,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         idType = RealEstateRepository.getInstance(this).getTypeByName(sType);
         idStatus = RealEstateRepository.getInstance(this).getStatusByAvailability(bStatus);
         idNameAgent = RealEstateRepository.getInstance(this).getAgentNameByName(sNameAgent);
-
-
     }
 
     @Override

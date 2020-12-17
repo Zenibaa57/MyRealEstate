@@ -1,9 +1,13 @@
 package com.example.myrealestate.models;
 
+import android.content.Context;
+
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import com.example.myrealestate.repository.RealEstateRepository;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -58,5 +62,10 @@ public class Property implements Serializable {
         this.typeId = typeId;
         this.propertyStatusId = propertyStatusId;
         this.agentId = agentId;
+    }
+
+    public int getPlace(Context context) {
+        String type = RealEstateRepository.getInstance(context).getTypeById(typeId);
+        return context.getResources().getIdentifier(type, "drawable", context.getPackageName());
     }
 }

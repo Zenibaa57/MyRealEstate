@@ -14,4 +14,7 @@ public interface TypeDao extends ITypeService {
 
     @Override
     @Query("SELECT id FROM Type WHERE type = :type") int getTypeByName (String type);
+
+    @Override
+    @Query("SELECT type FROM Type WHERE id = :id") String getTypeById(int id);
 }

@@ -18,11 +18,13 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myrealestate.adapter.AgentAdapter;
 import com.example.myrealestate.adapter.PropertyAdapter;
 import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
+import com.example.myrealestate.viewmodels.AgentViewModel;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -31,11 +33,11 @@ import java.util.List;
 
 public class PropertyListActivity extends AppCompatActivity {
 
-     private PropertyViewModel propertyViewModel;
-     private RecyclerView recyclerViewProperties;
-     private String agentFirstname;
+
      private FloatingActionButton addProperty;
      private TextView what;
+     private RecyclerView realEstateRecyclerView;
+     private PropertyViewModel propertyViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class PropertyListActivity extends AppCompatActivity {
         setContentView(R.layout.real_estate_list);
         what = findViewById(R.id.what);
         addProperty = findViewById(R.id.addBusiness);
+        realEstateRecyclerView = findViewById(R.id.realEstateList);
         restoreUserAgentProfile();
 
         addProperty.setOnClickListener(view -> {
@@ -90,11 +93,18 @@ public class PropertyListActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void initList()
-    {
-  /*      final List<Property> properties = RealEstateRepository.getInstance(this).getProperties();
-        final PropertyAdapter propertyAdapter = new PropertyAdapter(properties);
-        recyclerViewProperties.setAdapter(propertyAdapter);*/
+    @Override
+    protected void onResume() {
+        //Cycle de vie de l'application retour sur le parent
+        super.onResume();
+        initList();
+    }
+
+    private void initList() {
+        propertyViewModel.property.observe(this, property -> {
+            final PropertyAdapter propertyAdapter = new PropertyAdapter(property,this);
+            realEstateRecyclerView.setAdapter(propertyAdapter);
+        });
     }
 
     private void restoreUserAgentProfile()
