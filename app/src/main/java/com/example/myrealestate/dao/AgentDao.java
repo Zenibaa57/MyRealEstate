@@ -17,4 +17,6 @@ public interface AgentDao extends IAgentService {
     //Requêtes de la BDD, interface (contrat)
     @Query("SELECT * FROM Agent")
     LiveData<List<Agent>> getAgent();
+
+    @Query("SELECT id FROM Agent WHERE firstname = :firstname") int getAgentNameByName (String firstname);
 }

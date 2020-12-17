@@ -14,10 +14,7 @@ public class GeoLocation {
 
     public static ArrayList getAddress (String locationAdress, Context context){
 
-        ArrayList location = new ArrayList();
-        Thread thread = new Thread(){
-            @Override
-            public void run(){
+        List<Double> location = new ArrayList<>();
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 try {
                     List addressList = geocoder.getFromLocationName(locationAdress,1);
@@ -31,10 +28,7 @@ public class GeoLocation {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        };
-        thread.start();
-        return location;
+        return (ArrayList) location;
     }
 
 }

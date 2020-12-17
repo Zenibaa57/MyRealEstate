@@ -51,7 +51,7 @@ public class AgentAdapter extends RecyclerView.Adapter<AgentAdapter.AgentViewHol
             //Mise à jour de des données
             name.setText(agent.firstname +" "+agent.lastname);
             job.setText(agent.job);
-            avatar.setImageResource( agent.getAvatar(context));
+            avatar.setImageResource(agent.getAvatar(context));
 
             itemView.setOnClickListener(v -> {
 

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
@@ -11,6 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.myrealestate.database.MyRealEstateDatabase;
 import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.models.Property;
+import com.example.myrealestate.models.Type;
 
 import java.util.List;
 
@@ -56,6 +58,18 @@ public final class RealEstateRepository {
 
     public LiveData<List<Agent>> getAgent() {
         return myRealEstateDatabase.agentDao().getAgent();
+    }
+
+    public int getTypeByName(String type) {
+        return myRealEstateDatabase.typeDao().getTypeByName(type);
+    }
+
+    public int getAgentNameByName(String firstname) {
+        return myRealEstateDatabase.agentDao().getAgentNameByName(firstname);
+    }
+
+    public int getStatusByAvailability(boolean status) {
+        return myRealEstateDatabase.propertyStatusDao().getStatusByAvailability(status);
     }
 
 

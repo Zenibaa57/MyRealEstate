@@ -9,4 +9,6 @@ public interface IAgentService {
 
     LiveData<List<Agent>> getAgent();
 
+    int getAgentNameByName(String firstname);
+
 }

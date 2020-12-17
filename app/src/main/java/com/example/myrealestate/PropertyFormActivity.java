@@ -3,7 +3,6 @@ package com.example.myrealestate;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +16,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myrealestate.Location.GeoLocation;
+import com.example.myrealestate.adapter.AgentAdapter;
+import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
+import com.example.myrealestate.repository.RealEstateRepository;
+import com.example.myrealestate.viewmodels.AgentViewModel;
+import com.example.myrealestate.viewmodels.TypeViewModel;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -47,10 +52,16 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private String sAddress;;
     private double lLatitude;;
     private double lLongitude;;
-    private Timestamp lDateOfTheCreationAdvert;
-    private Timestamp lDateOfTheUpdateAdvert;
+    private Long lDateOfTheCreationAdvert;
+    private Long lDateOfTheUpdateAdvert;
     private boolean bStatus;
     private String sNameAgent;
+
+    private int idType;
+    private int idStatus;
+    private int idNameAgent;
+
+    private TypeViewModel typeViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,16 +114,19 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
             textViewGarage.setTextColor(getResources().getColor(R.color.dark_blue));
             textViewHouse.setTextColor(getResources().getColor(R.color.dark_blue));
         });
+
     }
 
     @Override
     public void onClick(View view) {
-
         getViewInformation();
-        
-//        RealEstateRepository.getInstance(this).addProperty(new Property(sType,lPrice,lSurfaceArea,
-//                iNumberOfRoom,sDescription,sAddress,lLatitude,lLongitude,lDateOfTheCreationAdvert,
-//                lDateOfTheUpdateAdvert,bStatus,sNameAgent));
+
+        RealEstateRepository.getInstance(this).addProperty(new Property(lPrice,lSurfaceArea,iNumberOfRoom,sDescription,sAddress,
+                lLatitude,lLongitude,lDateOfTheCreationAdvert,lDateOfTheUpdateAdvert,idType,idStatus,idNameAgent));
+    }
+
+    private void initTypeViewModel() {
+
     }
 
     private void getViewInformation() {
@@ -126,10 +140,17 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         ArrayList location = GeoLocation.getAddress(sAddress,this);
         lLatitude = (double) location.get(0);
         lLongitude = (double) location.get(1);
-        lDateOfTheCreationAdvert = timestamp;
-        lDateOfTheUpdateAdvert = timestamp;
+        lDateOfTheCreationAdvert = timestamp.getTime();
+        lDateOfTheUpdateAdvert = timestamp.getTime();
+
         bStatus = true;
         sNameAgent = UserPreferences.getUserAgentProfile(this);
+
+        idType = RealEstateRepository.getInstance(this).getTypeByName(sType);
+        idStatus = RealEstateRepository.getInstance(this).getStatusByAvailability(bStatus);
+        idNameAgent = RealEstateRepository.getInstance(this).getAgentNameByName(sNameAgent);
+
+
     }
 
     @Override
