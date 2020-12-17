@@ -47,7 +47,7 @@ public final class RealEstateRepository {
 
                 db.execSQL("INSERT Into Type ('type') VALUES ('Garage');");
                 db.execSQL("INSERT Into Type ('type') VALUES ('House');");
-                db.execSQL("INSERT Into Type ('type') VALUES ('Apartment');");
+                db.execSQL("INSERT Into Type ('type') VALUES ('Building');");
             }
         }).build();
     }

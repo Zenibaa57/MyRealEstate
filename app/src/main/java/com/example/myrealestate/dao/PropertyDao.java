@@ -17,7 +17,7 @@ public interface PropertyDao extends IPropertyService {
 
     //Requêtes de la BDD, interface (contrat)
 
-    @Query("SELECT * FROM Agent")
+    @Query("SELECT * FROM Property")
     LiveData<List<Property>> getProperty();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -44,7 +44,6 @@ public class Property implements Serializable {
     public int propertyStatusId;
     public int agentId;
 
-
     public Property(double price, double surfaceArea, int numberOfRoom, String description, String address,
                     double latitude, double longitude, long dateOfTheCreationAdvert, long dateOfTheUpdateAdvert,
                     int typeId, int propertyStatusId, int agentId) {
@@ -66,6 +65,6 @@ public class Property implements Serializable {
 
     public int getPlace(Context context) {
         String type = RealEstateRepository.getInstance(context).getTypeById(typeId);
-        return context.getResources().getIdentifier(type, "drawable", context.getPackageName());
+        return context.getResources().getIdentifier(type.toLowerCase(), "drawable", context.getPackageName());
     }
 }

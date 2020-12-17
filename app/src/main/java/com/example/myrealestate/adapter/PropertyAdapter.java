@@ -46,7 +46,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             //Mise à jour de des données
        //     placeName.setText(properties.s);
             placeLocation.setText(properties.address);
-        //    house.setImageResource();
+            house.setImageResource(properties.getPlace(context));
             itemView.setOnClickListener(v -> {
 //                final Intent intent = new Intent(itemView.getContext(), CityWeatherInformation.class);
 //                intent.putExtra(CityWeatherInformation.CITY_NAME, city);
@@ -58,7 +58,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     @NonNull
     @Override
     public PropertyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.real_estate_list, parent,false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.place_recyclerview, parent,false);
         return new PropertyViewHolder(view);
     }
 

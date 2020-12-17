@@ -30,9 +30,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-
 public class PropertyListActivity extends AppCompatActivity {
-
 
      private FloatingActionButton addProperty;
      private TextView what;
@@ -46,7 +44,7 @@ public class PropertyListActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Window window = this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(this, R.color.light_grey));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.blue));
         setContentView(R.layout.real_estate_list);
         what = findViewById(R.id.what);
         addProperty = findViewById(R.id.addBusiness);
@@ -59,22 +57,21 @@ public class PropertyListActivity extends AppCompatActivity {
         });
 
          propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
+         initList();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Boite de dialogue lors de la suppression
         if (item.getItemId() == R.id.settings)
-        {
-
-        } else if (item.getItemId() == android.R.id.home){
+        { }
+        else if (item.getItemId() == android.R.id.home){
             new AlertDialog.Builder(this)
                     .setTitle("WARNINGS!")
                     .setMessage("Are you sure you want to sign out?")
@@ -89,10 +86,9 @@ public class PropertyListActivity extends AppCompatActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
-
-
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onResume() {
         //Cycle de vie de l'application retour sur le parent
@@ -113,6 +109,4 @@ public class PropertyListActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(userLogin) == false) {
             what.setText(userLogin); }
     }
-
-
 }
