@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.models.Property;
@@ -23,6 +24,14 @@ public interface PropertyDao extends IPropertyService {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addProperty(Property property);
 
-    @Query("SELECT * FROM Property WHERE id = :id")
-    LiveData<List<Property>> getPropertyById(int id);
+
+    @Query("DELETE FROM Property WHERE id = :id")
+    void deletePropertyById (int id);
+
+    @Query("UPDATE Property SET `price` = :price, `surfaceArea`= :surfaceArea,`numberOfRoom` = :numberOfRoom, `description`= :description," +
+            "`address` = :address, `latitude`= :latitude, `longitude`= :longitude, `dateOfTheCreationAdvert`= :dateOfTheCreationAdvert" +
+            ", `dateOfTheUpdateAdvert`= :dateOfTheUpdateAdvert, `typeId`= :requestTime, `propertyStatusId`= :propertyStatusId, " +
+            "`agentId`= :agentId WHERE id = :id")
+    void updateProperty(double price,double surfaceArea, int numberOfRoom,String description,String address, double latitude, double longitude,
+                     long dateOfTheCreationAdvert, long dateOfTheUpdateAdvert, int requestTime, int propertyStatusId,int agentId, int id);
 }

@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/convertButton"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -41,12 +41,12 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_button"
                 android:fontFamily="@font/typo_grotesk"
-                android:text="CONVERT €"
+                android:text="CONVERT TO €"
 
                 android:textColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/editButton"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -59,7 +59,7 @@
                 android:textColor="#FFFFFF" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/deleteButton"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -67,7 +67,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_red_button"
-                android:enabled="false"
                 android:fontFamily="@font/typo_grotesk"
                 android:text="DELETE PROPERTY"
                 android:textColor="#FFFFFF" />
@@ -421,7 +420,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="0"
-                    android:checked="true" />
+                    android:checked="true"
+                    android:clickable="false"
+                    android:enabled="false" />
 
             </LinearLayout>
 

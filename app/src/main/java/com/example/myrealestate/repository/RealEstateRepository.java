@@ -84,6 +84,14 @@ public final class RealEstateRepository {
         return myRealEstateDatabase.propertyDao().getProperty();
     }
 
+    public void deletePropertyById(int id ) {
+         myRealEstateDatabase.propertyDao().deletePropertyById(id);
+    }
+
+    public void updateProperty(int id ) {
+        myRealEstateDatabase.propertyDao().updateProperty(id);
+    }
+
     public  boolean getStatusById(int id) {
         return myRealEstateDatabase.propertyStatusDao().getStatusById(id);
     }

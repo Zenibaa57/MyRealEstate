@@ -1,6 +1,7 @@
 package com.example.myrealestate.service;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.models.Property;
@@ -14,7 +15,6 @@ public interface IPropertyService {
 
     void addProperty(Property property);
 
-    LiveData<List<Property>> getPropertyById(int id);
-
+    void deletePropertyById(int id);
 
 }
