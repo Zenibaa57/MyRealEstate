@@ -18,15 +18,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myrealestate.Location.GeoLocation;
-import com.example.myrealestate.adapter.AgentAdapter;
 import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
-import com.example.myrealestate.viewmodels.AgentViewModel;
-import com.example.myrealestate.viewmodels.TypeViewModel;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -71,7 +67,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.blue));
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.light_grey)));
         getSupportActionBar().setElevation(0);
-        setContentView(R.layout.property_details);
+        setContentView(R.layout.add_property);
 
         cardGarage = findViewById(R.id.cardGarage);
         cardHouse = findViewById(R.id.cardHouse);
