@@ -29,6 +29,12 @@
             android:name=".PropertyFormActivity"
             android:parentActivityName=".PropertyListActivity"
             android:label=""/>
+
+        <activity
+            android:name=".PropertyDetailsActivity"
+            android:parentActivityName=".PropertyListActivity"
+            android:label=""/>
+
     </application>
 
 </manifest>

@@ -60,6 +60,10 @@ public final class RealEstateRepository {
         return myRealEstateDatabase.agentDao().getAgent();
     }
 
+    public String getAgentNameById(int id) {
+        return myRealEstateDatabase.agentDao().getAgentNameById(id);
+    }
+
     public int getTypeByName(String type) {
         return myRealEstateDatabase.typeDao().getTypeByName(type);
     }
@@ -80,5 +84,8 @@ public final class RealEstateRepository {
         return myRealEstateDatabase.propertyDao().getProperty();
     }
 
+    public  boolean getStatusById(int id) {
+        return myRealEstateDatabase.propertyStatusDao().getStatusById(id);
+    }
 
 }

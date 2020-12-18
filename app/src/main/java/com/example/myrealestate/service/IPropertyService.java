@@ -14,5 +14,7 @@ public interface IPropertyService {
 
     void addProperty(Property property);
 
+    LiveData<List<Property>> getPropertyById(int id);
+
 
 }

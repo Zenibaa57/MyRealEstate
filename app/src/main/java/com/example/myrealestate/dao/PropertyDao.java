@@ -23,4 +23,6 @@ public interface PropertyDao extends IPropertyService {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addProperty(Property property);
 
+    @Query("SELECT * FROM Property WHERE id = :id")
+    LiveData<List<Property>> getPropertyById(int id);
 }

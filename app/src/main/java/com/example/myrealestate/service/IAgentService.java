@@ -11,4 +11,6 @@ public interface IAgentService {
 
     int getAgentNameByName(String firstname);
 
+    String getAgentNameById(int id);
+
 }

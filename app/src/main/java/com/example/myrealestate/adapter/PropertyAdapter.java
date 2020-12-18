@@ -1,6 +1,7 @@
 package com.example.myrealestate.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myrealestate.PropertyDetailsActivity;
 import com.example.myrealestate.R;
 import com.example.myrealestate.models.Property;
 
@@ -44,13 +46,13 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         public void updateViewHolder(final Property properties) {
 
             //Mise à jour de des données
-       //     placeName.setText(properties.s);
+            placeName.setText(properties.buildPropertyName(context));
             placeLocation.setText(properties.address);
             house.setImageResource(properties.getPlace(context));
             itemView.setOnClickListener(v -> {
-//                final Intent intent = new Intent(itemView.getContext(), CityWeatherInformation.class);
-//                intent.putExtra(CityWeatherInformation.CITY_NAME, city);
-//                itemView.getContext().startActivity(intent);
+                final Intent intent = new Intent(itemView.getContext(), PropertyDetailsActivity.class);
+                intent.putExtra(PropertyDetailsActivity.ID, properties);
+                itemView.getContext().startActivity(intent);
             });
         }
     }

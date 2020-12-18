@@ -67,4 +67,24 @@ public class Property implements Serializable {
         String type = RealEstateRepository.getInstance(context).getTypeById(typeId);
         return context.getResources().getIdentifier(type.toLowerCase(), "drawable", context.getPackageName());
     }
+
+    public String buildPropertyName(Context context) {
+        String propertyName = "#" + id +" " + sizeName()+" " + RealEstateRepository.getInstance(context).getTypeById(typeId).toLowerCase();
+        return propertyName;
+    }
+
+    private String sizeName(){
+        String resulat="";
+
+        if (surfaceArea<30){
+            resulat="Tiny";
+        }else if(surfaceArea>80 && surfaceArea<120){
+            resulat="Modest";
+        }else if(surfaceArea>120 && surfaceArea<200){
+            resulat="Big";
+        }else if(surfaceArea>200){
+            resulat="Giant";
+        }
+        return resulat;
+    }
 }

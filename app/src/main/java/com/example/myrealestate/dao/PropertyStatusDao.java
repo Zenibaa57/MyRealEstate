@@ -10,4 +10,7 @@ import com.example.myrealestate.service.IPropertyStatusService;
 public interface PropertyStatusDao extends IPropertyStatusService {
 
     @Query("SELECT id FROM PropertyStatus WHERE isAvaible = :status") int getStatusByAvailability (boolean status);
+
+    @Override
+    @Query("SELECT isAvaible FROM PropertyStatus WHERE id = :id") boolean getStatusById(int id);
 }

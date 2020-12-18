@@ -19,4 +19,6 @@ public interface AgentDao extends IAgentService {
     LiveData<List<Agent>> getAgent();
 
     @Query("SELECT id FROM Agent WHERE firstname = :firstname") int getAgentNameByName (String firstname);
+
+    @Query("SELECT firstname FROM Agent WHERE id = :id") String getAgentNameById (int id);
 }
