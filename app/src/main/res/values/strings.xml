@@ -14,4 +14,5 @@
     <string name="update_property">UPDATE PROPERTY</string>
     <string name="morning">Good Morning!</string>
     <string name="places">What place are you looking for ?</string>
+    <string name ="APIKey">AIzaSyDwIiyGt3F7M6w3Xb3jELPupGwzVo_f-bE</string>
 </resources>

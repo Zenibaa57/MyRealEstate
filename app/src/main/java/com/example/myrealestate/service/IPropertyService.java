@@ -1,6 +1,7 @@
 package com.example.myrealestate.service;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Query;
 
 import com.example.myrealestate.models.Agent;
@@ -12,6 +13,8 @@ public interface IPropertyService {
 
     //Interface, contrat défini
     LiveData<List<Property>> getProperty();
+
+    LiveData<Property> getPropertyById(int id);
 
     void addProperty(Property property);
 

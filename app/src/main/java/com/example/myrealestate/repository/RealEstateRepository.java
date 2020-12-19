@@ -53,9 +53,6 @@ public final class RealEstateRepository {
         }).build();
     }
 
-    public void addProperty(Property property) {
-        myRealEstateDatabase.propertyDao().addProperty(property);
-    }
 
     public LiveData<List<Agent>> getAgent() {
         return myRealEstateDatabase.agentDao().getAgent();
@@ -83,6 +80,14 @@ public final class RealEstateRepository {
 
     public  LiveData<List<Property>> getProperty() {
         return myRealEstateDatabase.propertyDao().getProperty();
+    }
+
+    public LiveData<Property> getPropertyById(int id) {
+        return myRealEstateDatabase.propertyDao().getPropertyById(id);
+    }
+
+    public void addProperty(Property property) {
+        myRealEstateDatabase.propertyDao().addProperty(property);
     }
 
     public void deletePropertyById(int id ) {

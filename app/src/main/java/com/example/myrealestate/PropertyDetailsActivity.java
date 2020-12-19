@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myrealestate.exchangeAPI.IExchangeAPI;
 import com.example.myrealestate.exchangeAPI.Retrofit;
@@ -19,12 +20,11 @@ import com.example.myrealestate.exchangeAPI.UsdToEur;
 import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
+import com.example.myrealestate.viewmodels.PropertyViewModel;
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -40,6 +40,7 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
     private String agentName;
     private String type;
     private boolean status;
+    private double price;
 
     private TextView priceField;
     private TextView surfaceAreaField;
@@ -53,7 +54,7 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
     private TextView updateField;
     private TextView descriptionField;
     private CheckBox checkBoxField;
-    private Property property;
+    private int propertyId;
     private Button convertButton;
     private Button editButton;
     private Button deleteButton;
@@ -61,8 +62,7 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
     final HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
     private double eurRates;
     private String defaultRate ="usd";
-
-
+    private PropertyViewModel propertyViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,8 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle((String) b.get("name"));
         setContentView(R.layout.property_details);
-        property = (Property) getIntent().getSerializableExtra(PropertyDetailsActivity.ID);
+        propertyId = (int) getIntent().getSerializableExtra(PropertyDetailsActivity.ID);
+        propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
 
         priceField = findViewById(R.id.priceField);
         surfaceAreaField = findViewById(R.id.surfaceAreaField);
@@ -97,11 +98,11 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
 
         convertButton.setOnClickListener(view -> {
             if (defaultRate.equals("usd")){
-                priceField.setText(formatPrice(property.price * eurRates) +" €");
+                priceField.setText(formatPrice(price * eurRates) +" €");
                 defaultRate="eur";
                 convertButton.setText("CONVERT TO $");
             } else if (defaultRate.equals("eur")){
-                priceField.setText("$ "+ property.price);
+                priceField.setText("$ "+ price);
                 defaultRate="usd";
                 convertButton.setText("CONVERT TO €");
             }
@@ -110,59 +111,57 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         editButton.setOnClickListener(view -> {
             Intent intent = new Intent(PropertyDetailsActivity.this, PropertyFormActivity.class);
             intent.putExtra("State", PropertyFormActivity.State.UPDATE);
-            intent.putExtra(PropertyFormActivity.sPROPERTY, property);
+            intent.putExtra(PropertyFormActivity.ID, propertyId);
             startActivity(intent);
         });
 
         deleteButton.setOnClickListener(view -> {
-            RealEstateRepository.getInstance(this).deletePropertyById(property.id);
+            RealEstateRepository.getInstance(this).deletePropertyById(propertyId);
             finish();
         });
-
-        try {
-            initData();
-            callAPI();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        initData();
+        callAPI();
     }
 
     protected void onResume() {
         //Cycle de vie de l'application retour sur le parent
         super.onResume();
-        try {
-            initData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        initData();
     }
 
-    private void initData() throws IOException {
+    private void initData()   {
+
+        propertyViewModel.getPropertyInformation(propertyId);
+        propertyViewModel.propertyId.observe(this, liveDataProperty -> {
 
         //Initialize primary data
-        agentName = RealEstateRepository.getInstance(this).getAgentNameById(property.agentId);
-        type = String.valueOf(RealEstateRepository.getInstance(this).getTypeById(property.typeId));
-        status = RealEstateRepository.getInstance(this).getStatusById(property.propertyStatusId);
+        agentName = RealEstateRepository.getInstance(this).getAgentNameById(liveDataProperty.agentId);
+        type = String.valueOf(RealEstateRepository.getInstance(this).getTypeById(liveDataProperty.typeId));
+        status = RealEstateRepository.getInstance(this).getStatusById(liveDataProperty.propertyStatusId);
+        price = liveDataProperty.price;
 
-        priceField.setText("$ "+ formatPrice(property.price));
-        surfaceAreaField.setText(property.surfaceArea +" m²");
-        numberOfRoomsField.setText(property.numberOfRoom +" rooms");
-        addressField.setText(String.valueOf(property.address));
-        latitudeField.setText(String.valueOf(property.latitude));
-        longitudeField.setText(String.valueOf(property.longitude));
-        descriptionField.setText(String.valueOf(property.description));
+        priceField.setText("$ "+ formatPrice(price));
+        surfaceAreaField.setText(liveDataProperty.surfaceArea +" m²");
+        numberOfRoomsField.setText(liveDataProperty.numberOfRoom +" rooms");
+        addressField.setText(liveDataProperty.address);
+        latitudeField.setText(String.valueOf(liveDataProperty.latitude));
+        longitudeField.setText(String.valueOf(liveDataProperty.longitude));
+        descriptionField.setText(liveDataProperty.description);
+        Timestamp timestampCreation = new Timestamp(liveDataProperty.dateOfTheCreationAdvert);
+        Timestamp timestampUpdate = new Timestamp(liveDataProperty.dateOfTheUpdateAdvert);
+        creationField.setText(String.valueOf(timestampCreation));
+        updateField.setText(String.valueOf(timestampUpdate));
+        typeImage.setImageResource(liveDataProperty.getPlace(this));
+
         typeField.setText(type);
         agentField.setText(agentName);
         checkBoxField.setChecked(status);
-        Timestamp timestampCreation = new Timestamp(property.dateOfTheCreationAdvert);
-        Timestamp timestampUpdate = new Timestamp(property.dateOfTheUpdateAdvert);
-        creationField.setText(String.valueOf(timestampCreation));
-        updateField.setText(String.valueOf(timestampUpdate));
-        typeImage.setImageResource(property.getPlace(this));
 
         //Initialize button
         if (agentName.equals(UserPreferences.getUserAgentProfile(this)))
             deleteButton.setVisibility(View.VISIBLE);
+        });
+
     }
 
     @Override

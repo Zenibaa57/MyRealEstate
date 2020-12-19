@@ -51,7 +51,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             house.setImageResource(properties.getPlace(context));
             itemView.setOnClickListener(v -> {
                 final Intent intent = new Intent(itemView.getContext(), PropertyDetailsActivity.class);
-                intent.putExtra(PropertyDetailsActivity.ID, properties);
+                intent.putExtra(PropertyDetailsActivity.ID, properties.id);
                 intent.putExtra(PropertyDetailsActivity.NAME, properties.buildPropertyName(context));
                 itemView.getContext().startActivity(intent);
             });

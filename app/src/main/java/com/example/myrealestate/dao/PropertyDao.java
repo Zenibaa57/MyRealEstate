@@ -1,6 +1,7 @@
 package com.example.myrealestate.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -20,6 +21,9 @@ public interface PropertyDao extends IPropertyService {
 
     @Query("SELECT * FROM Property")
     LiveData<List<Property>> getProperty();
+
+    @Query("SELECT * FROM Property WHERE id = :id")
+    LiveData<Property> getPropertyById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void addProperty(Property property);

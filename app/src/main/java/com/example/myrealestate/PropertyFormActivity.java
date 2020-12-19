@@ -25,11 +25,14 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myrealestate.Location.GeoLocation;
 import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
+import com.example.myrealestate.viewmodels.AgentViewModel;
+import com.example.myrealestate.viewmodels.PropertyViewModel;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -52,7 +55,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private TextView textViewBuilding;
     private CheckBox checkBox;
     private Button addProperty;
-
     private String sType;
     private double lPrice;
     private double lSurfaceArea;
@@ -65,16 +67,14 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private Long lDateOfTheUpdateAdvert;
     private boolean bStatus;
     private String sNameAgent;
-    private Property property;
-
+    private int propertyId;
     private int idType;
     private int idStatus;
     private int idNameAgent;
     public static final String STATE = "state";
-    public static final String sPROPERTY = "property";
-
+    public static final String ID = "property";
     public enum State {ADD, UPDATE,}
-
+    private PropertyViewModel propertyViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,10 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().setElevation(0);
         setContentView(R.layout.add_property);
         State state = (State) getIntent().getSerializableExtra("State");
-        property = (Property) getIntent().getSerializableExtra(PropertyFormActivity.sPROPERTY);
+
+        propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
+
+
 
         cardGarage = findViewById(R.id.cardGarage);
         cardHouse = findViewById(R.id.cardHouse);
@@ -101,15 +104,25 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         checkBox = findViewById(R.id.checkBox);
         addProperty = findViewById(R.id.addProperty);
 
+        if (state == State.ADD){
+            addProperty.setText("ADD NEW PROPERTY");
+        }
+        else if (state == State.UPDATE){
+            addProperty.setText("UPDATE PROPERTY");
+            propertyId = (int) getIntent().getSerializableExtra(PropertyFormActivity.ID);
+            updatePropertyData();
+        }
+
         addProperty.setOnClickListener(view -> {
             if (checkMandatoryField()) {
                 getViewInformation();
                 if (state == State.ADD){
                 RealEstateRepository.getInstance(this).addProperty(new Property(lPrice, lSurfaceArea, iNumberOfRoom, sDescription, sAddress,
                         lLatitude, lLongitude, lDateOfTheCreationAdvert, lDateOfTheUpdateAdvert, idType, idStatus, idNameAgent));
-                displayNotification("ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + "add a new property on " + property.address+"!");
+                displayNotification("ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + "add a new property!");
                 }else if (state == State.UPDATE){
                     getViewInformation();
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                     Map<String, Object> propertyMap= new HashMap<>();
                     propertyMap.put("price",lPrice);
                     propertyMap.put("surfaceArea",lSurfaceArea);
@@ -118,12 +131,12 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     propertyMap.put("address",sAddress);
                     propertyMap.put("latitude",lLatitude);
                     propertyMap.put("longitude",lLongitude);
-                    propertyMap.put("dateOfTheCreationAdvert",property.dateOfTheCreationAdvert);
-                    propertyMap.put("dateOfTheUpdateAdvert",lDateOfTheUpdateAdvert);
+                    propertyMap.put("dateOfTheCreationAdvert",lDateOfTheCreationAdvert);
+                    propertyMap.put("dateOfTheUpdateAdvert",timestamp.getTime());
                     propertyMap.put("type",idType);
                     propertyMap.put("status",idStatus);
                     propertyMap.put("agentName",idNameAgent);
-                    propertyMap.put("id",property.id);
+                    propertyMap.put("id",propertyId);
                     RealEstateRepository.getInstance(this).updateProperty(propertyMap);
                     displayNotification("UPDATE PROPERTY",UserPreferences.getUserAgentProfile(this) + " update a property!");
                 }
@@ -149,41 +162,38 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         });
 
 
-        if (state == State.ADD){
-            addProperty.setText("ADD NEW PROPERTY");
-        }
-        else if (state == State.UPDATE){
-            addProperty.setText("UPDATE PROPERTY");
-           updatePropertyData();
-        }
 
     }
 
     private void updatePropertyData() {
 
-        price.setText(String.valueOf(property.price));
-        surfaceArea.setText(String.valueOf(property.surfaceArea));
-        numberOfRooms.setText(String.valueOf(property.numberOfRoom));
-        address.setText(property.address);
-        description.setText(property.description);
-        sType = RealEstateRepository.getInstance(this).getTypeById(property.typeId);
-        lDateOfTheCreationAdvert = property.dateOfTheCreationAdvert;
-        sNameAgent = RealEstateRepository.getInstance(this).getAgentNameById(property.agentId);
-        checkBox.setChecked(RealEstateRepository.getInstance(this).getStatusById(property.propertyStatusId));
+        propertyViewModel.getPropertyInformation(propertyId);
+        propertyViewModel.propertyId.observe(this, liveDataProperty -> {
 
-        switch(sType) {
-            case "Garage":
-                cardGarage.setSelected(true);
-                textViewGarage.setTextColor(Color.parseColor("#FFFFFF"));
-                break;
-            case "House":
-                cardHouse.setSelected(true);
-                textViewHouse.setTextColor(Color.parseColor("#FFFFFF"));
-                break;
-            case "Building":
-                cardBuilding.setSelected(true);
-                textViewBuilding.setTextColor(Color.parseColor("#FFFFFF"));
-        }
+            price.setText(String.valueOf(liveDataProperty.price));
+            surfaceArea.setText(String.valueOf(liveDataProperty.surfaceArea));
+            numberOfRooms.setText(String.valueOf(liveDataProperty.numberOfRoom));
+            address.setText(liveDataProperty.address);
+            description.setText(liveDataProperty.description);
+            sType = RealEstateRepository.getInstance(this).getTypeById(liveDataProperty.typeId);
+            lDateOfTheCreationAdvert = liveDataProperty.dateOfTheCreationAdvert;
+            sNameAgent = RealEstateRepository.getInstance(this).getAgentNameById(liveDataProperty.agentId);
+            checkBox.setChecked(RealEstateRepository.getInstance(this).getStatusById(liveDataProperty.propertyStatusId));
+
+            switch(sType) {
+                case "Garage":
+                    cardGarage.setSelected(true);
+                    textViewGarage.setTextColor(Color.parseColor("#FFFFFF"));
+                    break;
+                case "House":
+                    cardHouse.setSelected(true);
+                    textViewHouse.setTextColor(Color.parseColor("#FFFFFF"));
+                    break;
+                case "Building":
+                    cardBuilding.setSelected(true);
+                    textViewBuilding.setTextColor(Color.parseColor("#FFFFFF"));
+            }
+        });
 
     }
 
