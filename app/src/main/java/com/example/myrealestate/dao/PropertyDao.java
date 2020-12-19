@@ -30,8 +30,8 @@ public interface PropertyDao extends IPropertyService {
 
     @Query("UPDATE Property SET `price` = :price, `surfaceArea`= :surfaceArea,`numberOfRoom` = :numberOfRoom, `description`= :description," +
             "`address` = :address, `latitude`= :latitude, `longitude`= :longitude, `dateOfTheCreationAdvert`= :dateOfTheCreationAdvert" +
-            ", `dateOfTheUpdateAdvert`= :dateOfTheUpdateAdvert, `typeId`= :requestTime, `propertyStatusId`= :propertyStatusId, " +
+            ", `dateOfTheUpdateAdvert`= :dateOfTheUpdateAdvert, `typeId`= :typeId, `propertyStatusId`= :propertyStatusId, " +
             "`agentId`= :agentId WHERE id = :id")
     void updateProperty(double price,double surfaceArea, int numberOfRoom,String description,String address, double latitude, double longitude,
-                     long dateOfTheCreationAdvert, long dateOfTheUpdateAdvert, int requestTime, int propertyStatusId,int agentId, int id);
+                     long dateOfTheCreationAdvert, long dateOfTheUpdateAdvert, int typeId, int propertyStatusId,int agentId, int id);
 }

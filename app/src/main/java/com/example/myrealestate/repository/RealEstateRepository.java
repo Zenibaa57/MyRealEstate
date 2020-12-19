@@ -15,6 +15,7 @@ import com.example.myrealestate.models.Property;
 import com.example.myrealestate.models.Type;
 
 import java.util.List;
+import java.util.Map;
 
 public final class RealEstateRepository {
 
@@ -88,8 +89,11 @@ public final class RealEstateRepository {
          myRealEstateDatabase.propertyDao().deletePropertyById(id);
     }
 
-    public void updateProperty(int id ) {
-        myRealEstateDatabase.propertyDao().updateProperty(id);
+    public void updateProperty(Map<String, Object> map ) {
+        myRealEstateDatabase.propertyDao().updateProperty((Double) map.get("price"),(Double)map.get("surfaceArea"),(Integer) map.get("numberOfRoom"),
+                (String) map.get("description"),  (String) map.get("address"),(Double)map.get("latitude"),(Double)map.get("longitude")
+                , (Long) map.get("dateOfTheCreationAdvert"), (Long) map.get("dateOfTheUpdateAdvert"),(Integer) map.get("type"),(Integer)map.get("status")
+                ,(Integer)map.get("agentName"),(Integer)map.get("id"));
     }
 
     public  boolean getStatusById(int id) {

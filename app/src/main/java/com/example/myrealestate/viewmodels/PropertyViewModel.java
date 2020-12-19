@@ -21,4 +21,6 @@ public class PropertyViewModel extends AndroidViewModel {
     }
 
     public final LiveData<List<Property>> property = RealEstateRepository.getInstance(getApplication()).getProperty();
+
+   // public final LiveData<Property> propertyId = RealEstateRepository.getInstance(getApplication()).getPropertyById(id);
 }

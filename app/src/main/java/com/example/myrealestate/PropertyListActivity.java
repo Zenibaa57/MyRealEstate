@@ -37,6 +37,7 @@ public class PropertyListActivity extends AppCompatActivity {
      private RecyclerView realEstateRecyclerView;
      private PropertyViewModel propertyViewModel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class PropertyListActivity extends AppCompatActivity {
 
         addProperty.setOnClickListener(view -> {
             Intent intent = new Intent(PropertyListActivity.this, PropertyFormActivity.class);
+            intent.putExtra("State", PropertyFormActivity.State.ADD);
             startActivity(intent);
         });
 

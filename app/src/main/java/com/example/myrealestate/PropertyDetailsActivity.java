@@ -23,6 +23,8 @@ import com.example.myrealestate.repository.RealEstateRepository;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,6 +36,10 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
 
     public static final String ID = "idProperty";
     public static final String NAME = "name";
+
+    private String agentName;
+    private String type;
+    private boolean status;
 
     private TextView priceField;
     private TextView surfaceAreaField;
@@ -102,7 +108,10 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         });
 
         editButton.setOnClickListener(view -> {
-
+            Intent intent = new Intent(PropertyDetailsActivity.this, PropertyFormActivity.class);
+            intent.putExtra("State", PropertyFormActivity.State.UPDATE);
+            intent.putExtra(PropertyFormActivity.sPROPERTY, property);
+            startActivity(intent);
         });
 
         deleteButton.setOnClickListener(view -> {
@@ -118,21 +127,33 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         }
     }
 
+    protected void onResume() {
+        //Cycle de vie de l'application retour sur le parent
+        super.onResume();
+        try {
+            initData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void initData() throws IOException {
 
         //Initialize primary data
-        String agentName = RealEstateRepository.getInstance(this).getAgentNameById(property.agentId);
+        agentName = RealEstateRepository.getInstance(this).getAgentNameById(property.agentId);
+        type = String.valueOf(RealEstateRepository.getInstance(this).getTypeById(property.typeId));
+        status = RealEstateRepository.getInstance(this).getStatusById(property.propertyStatusId);
+
         priceField.setText("$ "+ formatPrice(property.price));
-        surfaceAreaField.setText(String.valueOf(property.surfaceArea) +" m²");
-        numberOfRoomsField.setText(String.valueOf(property.numberOfRoom) +" rooms");
+        surfaceAreaField.setText(property.surfaceArea +" m²");
+        numberOfRoomsField.setText(property.numberOfRoom +" rooms");
         addressField.setText(String.valueOf(property.address));
         latitudeField.setText(String.valueOf(property.latitude));
         longitudeField.setText(String.valueOf(property.longitude));
         descriptionField.setText(String.valueOf(property.description));
-        typeField.setText(String.valueOf(RealEstateRepository.getInstance(this).getTypeById(property.typeId)));
+        typeField.setText(type);
         agentField.setText(agentName);
-        checkBoxField.setChecked(RealEstateRepository.getInstance(this).getStatusById(property.propertyStatusId));
+        checkBoxField.setChecked(status);
         Timestamp timestampCreation = new Timestamp(property.dateOfTheCreationAdvert);
         Timestamp timestampUpdate = new Timestamp(property.dateOfTheUpdateAdvert);
         creationField.setText(String.valueOf(timestampCreation));
