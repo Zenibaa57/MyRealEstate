@@ -75,6 +75,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     public static final String ID = "property";
     public enum State {ADD, UPDATE,}
     private PropertyViewModel propertyViewModel;
+    private Property property;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +86,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().setElevation(0);
         setContentView(R.layout.add_property);
         State state = (State) getIntent().getSerializableExtra("State");
-
         propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
-
-
-
         cardGarage = findViewById(R.id.cardGarage);
         cardHouse = findViewById(R.id.cardHouse);
         cardBuilding = findViewById(R.id.cardBuilding);
@@ -138,6 +135,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     propertyMap.put("agentName",idNameAgent);
                     propertyMap.put("id",propertyId);
                     RealEstateRepository.getInstance(this).updateProperty(propertyMap);
+
                     displayNotification("UPDATE PROPERTY",UserPreferences.getUserAgentProfile(this) + " update a property!");
                 }
                 finish();
@@ -160,16 +158,11 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
             initCard();
             updateCard(cardBuilding,textViewBuilding,"Building");
         });
-
-
-
     }
 
     private void updatePropertyData() {
 
-        propertyViewModel.getPropertyInformation(propertyId);
-        propertyViewModel.propertyId.observe(this, liveDataProperty -> {
-
+        propertyViewModel.getPropertyInformation(propertyId).observe(this, liveDataProperty -> {
             price.setText(String.valueOf(liveDataProperty.price));
             surfaceArea.setText(String.valueOf(liveDataProperty.surfaceArea));
             numberOfRooms.setText(String.valueOf(liveDataProperty.numberOfRoom));
@@ -179,7 +172,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
             lDateOfTheCreationAdvert = liveDataProperty.dateOfTheCreationAdvert;
             sNameAgent = RealEstateRepository.getInstance(this).getAgentNameById(liveDataProperty.agentId);
             checkBox.setChecked(RealEstateRepository.getInstance(this).getStatusById(liveDataProperty.propertyStatusId));
-
             switch(sType) {
                 case "Garage":
                     cardGarage.setSelected(true);
@@ -194,7 +186,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     textViewBuilding.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });
-
     }
 
     private void initCard(){
@@ -227,7 +218,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private boolean checkMandatoryField() {
 
         boolean allFieldAreCompleted = false;
-
         if ((cardGarage.isSelected() || cardHouse.isSelected() || cardBuilding.isSelected()) &&
                 !TextUtils.isEmpty(price.getText()) && !TextUtils.isEmpty(surfaceArea.getText())
                 && !TextUtils.isEmpty(address.getText()) && !TextUtils.isEmpty(numberOfRooms.getText())
@@ -254,10 +244,8 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         lLongitude = (double) location.get(1);
         lDateOfTheCreationAdvert = timestamp.getTime();
         lDateOfTheUpdateAdvert = timestamp.getTime();
-
         bStatus = checkBox.isChecked();
         sNameAgent = UserPreferences.getUserAgentProfile(this);
-
         idType = RealEstateRepository.getInstance(this).getTypeByName(sType);
         idStatus = RealEstateRepository.getInstance(this).getStatusByAvailability(bStatus);
         idNameAgent = RealEstateRepository.getInstance(this).getAgentNameByName(sNameAgent);

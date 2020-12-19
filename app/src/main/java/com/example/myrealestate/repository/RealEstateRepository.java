@@ -90,6 +90,7 @@ public final class RealEstateRepository {
         myRealEstateDatabase.propertyDao().addProperty(property);
     }
 
+
     public void deletePropertyById(int id ) {
          myRealEstateDatabase.propertyDao().deletePropertyById(id);
     }
