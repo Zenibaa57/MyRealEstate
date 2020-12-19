@@ -1,5 +1,8 @@
 package com.example.myrealestate;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +22,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.myrealestate.Location.GeoLocation;
@@ -26,6 +33,8 @@ import com.example.myrealestate.repository.RealEstateRepository;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PropertyFormActivity extends AppCompatActivity implements View.OnClickListener {
@@ -41,6 +50,8 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private TextView textViewGarage;
     private TextView textViewHouse;
     private TextView textViewBuilding;
+    private CheckBox checkBox;
+    private Button addProperty;
 
     private String sType;
     private double lPrice;
@@ -54,10 +65,15 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private Long lDateOfTheUpdateAdvert;
     private boolean bStatus;
     private String sNameAgent;
+    private Property property;
 
     private int idType;
     private int idStatus;
     private int idNameAgent;
+    public static final String STATE = "state";
+    public static final String sPROPERTY = "property";
+
+    public enum State {ADD, UPDATE,}
 
 
     @Override
@@ -68,6 +84,8 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.light_grey)));
         getSupportActionBar().setElevation(0);
         setContentView(R.layout.add_property);
+        State state = (State) getIntent().getSerializableExtra("State");
+        property = (Property) getIntent().getSerializableExtra(PropertyFormActivity.sPROPERTY);
 
         cardGarage = findViewById(R.id.cardGarage);
         cardHouse = findViewById(R.id.cardHouse);
@@ -80,7 +98,40 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         textViewGarage = findViewById(R.id.textviewGarage);
         textViewHouse = findViewById(R.id.textviewHouse);
         textViewBuilding = findViewById(R.id.textviewBuilding);
-        findViewById(R.id.addProperty).setOnClickListener(this);
+        checkBox = findViewById(R.id.checkBox);
+        addProperty = findViewById(R.id.addProperty);
+
+        addProperty.setOnClickListener(view -> {
+            if (checkMandatoryField()) {
+                getViewInformation();
+                if (state == State.ADD){
+                RealEstateRepository.getInstance(this).addProperty(new Property(lPrice, lSurfaceArea, iNumberOfRoom, sDescription, sAddress,
+                        lLatitude, lLongitude, lDateOfTheCreationAdvert, lDateOfTheUpdateAdvert, idType, idStatus, idNameAgent));
+                displayNotification("ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + "add a new property on " + property.address+"!");
+                }else if (state == State.UPDATE){
+                    getViewInformation();
+                    Map<String, Object> propertyMap= new HashMap<>();
+                    propertyMap.put("price",lPrice);
+                    propertyMap.put("surfaceArea",lSurfaceArea);
+                    propertyMap.put("numberOfRoom",iNumberOfRoom);
+                    propertyMap.put("description",sDescription);
+                    propertyMap.put("address",sAddress);
+                    propertyMap.put("latitude",lLatitude);
+                    propertyMap.put("longitude",lLongitude);
+                    propertyMap.put("dateOfTheCreationAdvert",property.dateOfTheCreationAdvert);
+                    propertyMap.put("dateOfTheUpdateAdvert",lDateOfTheUpdateAdvert);
+                    propertyMap.put("type",idType);
+                    propertyMap.put("status",idStatus);
+                    propertyMap.put("agentName",idNameAgent);
+                    propertyMap.put("id",property.id);
+                    RealEstateRepository.getInstance(this).updateProperty(propertyMap);
+                    displayNotification("UPDATE PROPERTY",UserPreferences.getUserAgentProfile(this) + " update a property!");
+                }
+                finish();
+            } else {
+                displayErrorMessage();
+            }
+        });
 
         cardGarage.setOnClickListener(view -> {
             initCard();
@@ -96,6 +147,44 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
             initCard();
             updateCard(cardBuilding,textViewBuilding,"Building");
         });
+
+
+        if (state == State.ADD){
+            addProperty.setText("ADD NEW PROPERTY");
+        }
+        else if (state == State.UPDATE){
+            addProperty.setText("UPDATE PROPERTY");
+           updatePropertyData();
+        }
+
+    }
+
+    private void updatePropertyData() {
+
+        price.setText(String.valueOf(property.price));
+        surfaceArea.setText(String.valueOf(property.surfaceArea));
+        numberOfRooms.setText(String.valueOf(property.numberOfRoom));
+        address.setText(property.address);
+        description.setText(property.description);
+        sType = RealEstateRepository.getInstance(this).getTypeById(property.typeId);
+        lDateOfTheCreationAdvert = property.dateOfTheCreationAdvert;
+        sNameAgent = RealEstateRepository.getInstance(this).getAgentNameById(property.agentId);
+        checkBox.setChecked(RealEstateRepository.getInstance(this).getStatusById(property.propertyStatusId));
+
+        switch(sType) {
+            case "Garage":
+                cardGarage.setSelected(true);
+                textViewGarage.setTextColor(Color.parseColor("#FFFFFF"));
+                break;
+            case "House":
+                cardHouse.setSelected(true);
+                textViewHouse.setTextColor(Color.parseColor("#FFFFFF"));
+                break;
+            case "Building":
+                cardBuilding.setSelected(true);
+                textViewBuilding.setTextColor(Color.parseColor("#FFFFFF"));
+        }
+
     }
 
     private void initCard(){
@@ -156,7 +245,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         lDateOfTheCreationAdvert = timestamp.getTime();
         lDateOfTheUpdateAdvert = timestamp.getTime();
 
-        bStatus = true;
+        bStatus = checkBox.isChecked();
         sNameAgent = UserPreferences.getUserAgentProfile(this);
 
         idType = RealEstateRepository.getInstance(this).getTypeByName(sType);
@@ -191,5 +280,31 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     .show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void displayNotification(String title,String Body)
+    {
+        final NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        final String notificationChannelId = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? "MyChannel" : null;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+        {
+            final NotificationChannel notificationChannel = new NotificationChannel(notificationChannelId, "My Channel", NotificationManager.IMPORTANCE_HIGH);
+            notificationManagerCompat.createNotificationChannel(notificationChannel);
+        }
+
+        final Intent intent = new Intent(this, PropertyListActivity.class);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, notificationChannelId);
+        notificationBuilder.setContentTitle(title);
+        notificationBuilder.setContentText(Body);
+        notificationBuilder.setSmallIcon(R.drawable.home);
+        notificationBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
+        notificationBuilder.setAutoCancel(true);
+        notificationBuilder.setChannelId(notificationChannelId);
+        notificationBuilder.setContentIntent(pendingIntent);
+
+        notificationManagerCompat.notify(1, notificationBuilder.build());
     }
 }
