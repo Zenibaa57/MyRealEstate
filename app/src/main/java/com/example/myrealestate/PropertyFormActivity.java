@@ -29,6 +29,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myrealestate.Location.GeoLocation;
 import com.example.myrealestate.models.Property;
+import com.example.myrealestate.notification.NotificationBuilder;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
 import com.example.myrealestate.viewmodels.AgentViewModel;
@@ -116,7 +117,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                 if (state == State.ADD){
                 RealEstateRepository.getInstance(this).addProperty(new Property(lPrice, lSurfaceArea, iNumberOfRoom, sDescription, sAddress,
                         lLatitude, lLongitude, lDateOfTheCreationAdvert, lDateOfTheUpdateAdvert, idType, idStatus, idNameAgent));
-                displayNotification("ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + "add a new property!");
+                    NotificationBuilder.getInstance(this).buildNotification(this,"ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + "add a new property!");
                 }else if (state == State.UPDATE){
                     getViewInformation();
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -135,8 +136,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     propertyMap.put("agentName",idNameAgent);
                     propertyMap.put("id",propertyId);
                     RealEstateRepository.getInstance(this).updateProperty(propertyMap);
-
-                    displayNotification("UPDATE PROPERTY",UserPreferences.getUserAgentProfile(this) + " update a property!");
+                    NotificationBuilder.getInstance(this).buildNotification(this,"UPDATE PROPERTY",UserPreferences.getUserAgentProfile(this) + " update a property!");
                 }
                 finish();
             } else {

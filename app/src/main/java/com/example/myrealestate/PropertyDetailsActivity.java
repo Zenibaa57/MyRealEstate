@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.myrealestate.exchangeAPI.IExchangeAPI;
 import com.example.myrealestate.exchangeAPI.Retrofit;
 import com.example.myrealestate.exchangeAPI.UsdToEur;
+import com.example.myrealestate.notification.NotificationBuilder;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
@@ -74,7 +75,6 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.property_details);
         propertyId = (int) getIntent().getSerializableExtra(PropertyDetailsActivity.ID);
         propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
-
         priceField = findViewById(R.id.priceField);
         surfaceAreaField = findViewById(R.id.surfaceAreaField);
         numberOfRoomsField = findViewById(R.id.numberOfRoomsField);
@@ -92,12 +92,7 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setVisibility(View.GONE);
         typeImage = findViewById(R.id.typeImage);
-
-        initData();
-        callAPI();
-
-
-
+        initData(); callAPI();
         convertButton.setOnClickListener(view -> {
             if (defaultRate.equals("usd")){
                 priceField.setText(formatPrice(price * eurRates) +" €");
@@ -119,29 +114,23 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
 
         deleteButton.setOnClickListener(view -> {
             RealEstateRepository.getInstance(this).deletePropertyById(propertyId);
-            propertyViewModel.propertyId.removeObservers(this);
+            NotificationBuilder.getInstance(this).buildNotification(this,"DELETE PROPERTY",UserPreferences.getUserAgentProfile(this) + " delete a property!");
            finish();
         });
     }
 
-
     protected void onResume() {
-        //Cycle de vie de l'application retour sur le parent
         super.onResume();
         initData();
     }
 
     private void initData()   {
-
             propertyViewModel.getPropertyInformation(propertyId).observe(this,liveData -> {
-
                 if (liveData != null) {
-                    //Initialize primary data
                     agentName = RealEstateRepository.getInstance(this).getAgentNameById(liveData.agentId);
                     type = String.valueOf(RealEstateRepository.getInstance(this).getTypeById(liveData.typeId));
                     status = RealEstateRepository.getInstance(this).getStatusById(liveData.propertyStatusId);
                     price = liveData.price;
-
                     priceField.setText("$ " + formatPrice(price));
                     surfaceAreaField.setText(liveData.surfaceArea + " m²");
                     numberOfRoomsField.setText(liveData.numberOfRoom + " rooms");
@@ -154,12 +143,9 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
                     creationField.setText(String.valueOf(timestampCreation));
                     updateField.setText(String.valueOf(timestampUpdate));
                     typeImage.setImageResource(liveData.getPlace(this));
-
                     typeField.setText(type);
                     agentField.setText(agentName);
                     checkBoxField.setChecked(status);
-
-                    //Initialize button
                     if (agentName.equals(UserPreferences.getUserAgentProfile(this)))
                         deleteButton.setVisibility(View.VISIBLE);
                 }
