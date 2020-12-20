@@ -117,7 +117,7 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                 if (state == State.ADD){
                 RealEstateRepository.getInstance(this).addProperty(new Property(lPrice, lSurfaceArea, iNumberOfRoom, sDescription, sAddress,
                         lLatitude, lLongitude, lDateOfTheCreationAdvert, lDateOfTheUpdateAdvert, idType, idStatus, idNameAgent));
-                    NotificationBuilder.getInstance(this).buildNotification(this,"ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + "add a new property!");
+                    NotificationBuilder.getInstance(this).buildNotification(this,"ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + " add a new property!");
                 }else if (state == State.UPDATE){
                     getViewInformation();
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -278,31 +278,5 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     .show();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void displayNotification(String title,String Body)
-    {
-        final NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        final String notificationChannelId = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? "MyChannel" : null;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-        {
-            final NotificationChannel notificationChannel = new NotificationChannel(notificationChannelId, "My Channel", NotificationManager.IMPORTANCE_HIGH);
-            notificationManagerCompat.createNotificationChannel(notificationChannel);
-        }
-
-        final Intent intent = new Intent(this, PropertyListActivity.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, notificationChannelId);
-        notificationBuilder.setContentTitle(title);
-        notificationBuilder.setContentText(Body);
-        notificationBuilder.setSmallIcon(R.drawable.home);
-        notificationBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
-        notificationBuilder.setAutoCancel(true);
-        notificationBuilder.setChannelId(notificationChannelId);
-        notificationBuilder.setContentIntent(pendingIntent);
-
-        notificationManagerCompat.notify(1, notificationBuilder.build());
     }
 }
