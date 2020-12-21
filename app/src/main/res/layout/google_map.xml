@@ -19,7 +19,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMaps"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="275dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
