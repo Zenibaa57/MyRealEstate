@@ -52,7 +52,6 @@ public class PropertyListActivity extends AppCompatActivity {
      private int minIRooms;
      private int maxIRooms;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,17 +192,37 @@ public class PropertyListActivity extends AppCompatActivity {
         propertyViewModel.property.observe(this, properties -> {
             for (Property property : properties) {
 
-                if (minIPrice!= 0){
+                if (minIPrice!= 0 && minISurface!= 0 &&minIRooms!= 0){
+                    if ((property.price>minIPrice && property.price<maxIPrice) && (property.surfaceArea>minISurface && property.surfaceArea<maxISurface) &&(property.numberOfRoom>minIRooms && property.numberOfRoom<maxIRooms)){
+                        propertyFiltered.add(property);
+                    }
+                }
+                else if (minIPrice!= 0 && minISurface!= 0 ){
+                    if ((property.price>minIPrice && property.price<maxIPrice) && (property.surfaceArea>minISurface && property.surfaceArea<maxISurface)){
+                        propertyFiltered.add(property);
+                    }
+                }
+                else if (minISurface!= 0 &&minIRooms!= 0){
+                    if ((property.surfaceArea>minISurface && property.surfaceArea<maxISurface) &&(property.numberOfRoom>minIRooms && property.numberOfRoom<maxIRooms)){
+                        propertyFiltered.add(property);
+                    }
+                }
+                else if (minIPrice!= 0  &&minIRooms!= 0){
+                    if ((property.price>minIPrice && property.price<maxIPrice) && (property.numberOfRoom>minIRooms && property.numberOfRoom<maxIRooms)){
+                        propertyFiltered.add(property);
+                    }
+                }
+                else if (minIPrice!= 0){
                  if (property.price>minIPrice && property.price<maxIPrice){
                         propertyFiltered.add(property);
                     }
                 }
-                if (minISurface!= 0) {
+                else if (minISurface!= 0) {
                     if (property.surfaceArea>minISurface && property.surfaceArea<maxISurface) {
                         propertyFiltered.add(property);
                     }
                 }
-                if (minIRooms!= 0) {
+                else if (minIRooms!= 0) {
                     if (property.numberOfRoom>minIRooms && property.numberOfRoom<maxIRooms) {
                         propertyFiltered.add(property);
                     }
