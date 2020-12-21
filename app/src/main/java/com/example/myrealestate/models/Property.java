@@ -78,6 +78,8 @@ public class Property implements Serializable {
 
         if (surfaceArea<30){
             resulat="Tiny";
+        }else if(surfaceArea>30 && surfaceArea<80) {
+            resulat = "Little";
         }else if(surfaceArea>80 && surfaceArea<120){
             resulat="Modest";
         }else if(surfaceArea>120 && surfaceArea<200){

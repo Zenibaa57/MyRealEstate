@@ -37,6 +37,11 @@
             android:parentActivityName=".PropertyListActivity"
             android:label=""/>
 
+        <activity
+            android:name=".MapActivity"
+            android:parentActivityName=".PropertyListActivity"
+            android:label=""/>
+
     </application>
 
 </manifest>

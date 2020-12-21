@@ -71,8 +71,11 @@ public class PropertyListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //Boite de dialogue lors de la suppression
-        if (item.getItemId() == R.id.settings)
-        { }
+        if (item.getItemId() == R.id.maps)
+        {
+            final Intent intent = new Intent(this, MapActivity.class);
+            this.startActivity(intent);
+        }
         else if (item.getItemId() == android.R.id.home){
             new AlertDialog.Builder(this)
                     .setTitle("WARNINGS!")
