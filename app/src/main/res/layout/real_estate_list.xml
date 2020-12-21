@@ -69,7 +69,6 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:padding="1dp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_alignParentTop="true"
@@ -79,6 +78,8 @@
             android:layout_weight="0"
             android:background="@drawable/rounded_button_primary"
             android:foregroundGravity="center"
+            android:padding="1dp"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_loupe" />
 
     </LinearLayout>

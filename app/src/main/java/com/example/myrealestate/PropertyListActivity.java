@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,16 +21,14 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myrealestate.adapter.AgentAdapter;
 import com.example.myrealestate.adapter.PropertyAdapter;
-import com.example.myrealestate.models.Agent;
 import com.example.myrealestate.models.Property;
 import com.example.myrealestate.preference.UserPreferences;
-import com.example.myrealestate.repository.RealEstateRepository;
-import com.example.myrealestate.viewmodels.AgentViewModel;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyListActivity extends AppCompatActivity {
@@ -36,6 +37,20 @@ public class PropertyListActivity extends AppCompatActivity {
      private TextView what;
      private RecyclerView realEstateRecyclerView;
      private PropertyViewModel propertyViewModel;
+     private View searchLayout;
+     private EditText minPrice;
+     private EditText maxPrice;
+     private EditText minSurface;
+     private EditText maxSurface;
+     private EditText minRooms;
+     private EditText maxRooms;
+    private ImageButton imageButton;
+     private double minIPrice;
+     private double maxIPrice;
+     private double minISurface;
+     private double maxISurface;
+     private int minIRooms;
+     private int maxIRooms;
 
 
     @Override
@@ -49,8 +64,20 @@ public class PropertyListActivity extends AppCompatActivity {
         setContentView(R.layout.real_estate_list);
         what = findViewById(R.id.what);
         addProperty = findViewById(R.id.addBusiness);
+        addProperty = findViewById(R.id.addBusiness);
+        searchLayout = findViewById(R.id.searchLayout);
+        imageButton = findViewById(R.id.imageButton);
         realEstateRecyclerView = findViewById(R.id.realEstateList);
         restoreUserAgentProfile();
+
+        searchLayout.setOnClickListener(view -> {
+            search();
+        });
+
+        imageButton.setOnClickListener(view -> {
+           initList();
+           imageButton.setVisibility(View.GONE);
+        });
 
         addProperty.setOnClickListener(view -> {
             Intent intent = new Intent(PropertyListActivity.this, PropertyFormActivity.class);
@@ -60,6 +87,59 @@ public class PropertyListActivity extends AppCompatActivity {
 
          propertyViewModel = new ViewModelProvider(this).get(PropertyViewModel.class);
          initList();
+    }
+
+    private void search() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                PropertyListActivity.this,R.style.BottomSheetDialog);
+        View bottomView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet_filter, findViewById(R.id.bottomContainer));
+        minPrice =  bottomView.findViewById(R.id.filterMinPrice);
+        maxPrice =  bottomView.findViewById(R.id.filterMaxPrice);
+        minSurface =  bottomView.findViewById(R.id.filterMinSurface);
+        maxSurface =  bottomView.findViewById(R.id.filterMaxSurface);
+        minRooms =  bottomView.findViewById(R.id.filterMinRooms);
+        maxRooms =  bottomView.findViewById(R.id.filterMaxRooms);
+        minIPrice =0.0;
+        maxIPrice=0.0;
+        minISurface=0.0;
+        maxISurface=0.0;
+        minIRooms=0;
+        maxIRooms=0;
+        bottomView.findViewById(R.id.buttonFilter).setOnClickListener(view -> {
+
+            if (!TextUtils.isEmpty(minPrice.getText()) && !TextUtils.isEmpty(maxPrice.getText())){
+                minIPrice = Double.parseDouble(String.valueOf(minPrice.getText()));
+                maxIPrice = Double.parseDouble(String.valueOf(maxPrice.getText()));
+                if (minIPrice>maxIPrice){
+                    Toast.makeText(getApplicationContext(), "Max value cannot be less than the min", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            if (!TextUtils.isEmpty(minSurface.getText()) && !TextUtils.isEmpty(maxSurface.getText())){
+                minISurface = Double.parseDouble(String.valueOf(minSurface.getText()));
+                maxISurface = Double.parseDouble(String.valueOf(maxSurface.getText()));
+                if (minISurface>maxISurface){
+                    Toast.makeText(getApplicationContext(), "Max value cannot be less than the min", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            if (!TextUtils.isEmpty(minRooms.getText()) && !TextUtils.isEmpty(maxRooms.getText())) {
+                minIRooms = Integer.parseInt(String.valueOf(minRooms.getText()));
+                maxIRooms = Integer.parseInt(String.valueOf(maxRooms.getText()));
+                if (minIRooms>maxIRooms){
+                    Toast.makeText(getApplicationContext(), "Max value cannot be less than the min", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            initListFilter();
+            bottomSheetDialog.dismiss();
+            imageButton.setVisibility(View.VISIBLE);
+        });
+        bottomSheetDialog.setContentView(bottomView);
+        bottomSheetDialog.show();
     }
 
     @Override
@@ -108,8 +188,34 @@ public class PropertyListActivity extends AppCompatActivity {
         });
     }
 
-    private void restoreUserAgentProfile()
-    {
+    private void initListFilter() {
+        List<Property> propertyFiltered  = new ArrayList<>();
+        propertyViewModel.property.observe(this, properties -> {
+            for (Property property : properties) {
+
+                if (minIPrice!= 0){
+                 if (property.price>minIPrice && property.price<maxIPrice){
+                        propertyFiltered.add(property);
+                    }
+                }
+                if (minISurface!= 0) {
+                    if (property.surfaceArea>minISurface && property.surfaceArea<maxISurface) {
+                        propertyFiltered.add(property);
+                    }
+                }
+                if (minIRooms!= 0) {
+                    if (property.numberOfRoom>minIRooms && property.numberOfRoom<maxIRooms) {
+                        propertyFiltered.add(property);
+                    }
+                }
+            }
+
+            final PropertyAdapter propertyAdapter = new PropertyAdapter(propertyFiltered,this);
+            realEstateRecyclerView.setAdapter(propertyAdapter);
+        });
+    }
+
+    private void restoreUserAgentProfile() {
         final String userLogin = UserPreferences.getUserAgentProfile(this);
         if (TextUtils.isEmpty(userLogin) == false) {
             what.setText(userLogin); }
