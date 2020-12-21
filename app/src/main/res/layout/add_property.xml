@@ -16,7 +16,7 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/cardSpecification"
+        app:layout_constraintBottom_toTopOf="@id/scroll"
         app:layout_constraintEnd_toStartOf="@id/cardHouse"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/cardSpecification"
+        app:layout_constraintBottom_toTopOf="@id/scroll"
         app:layout_constraintEnd_toStartOf="@id/cardBuilding"
         app:layout_constraintStart_toEndOf="@id/cardGarage"
         app:layout_constraintTop_toTopOf="parent">
@@ -90,7 +90,6 @@
                 android:text="House"
                 android:textColor="@color/dark_blue" />
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -102,7 +101,7 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/cardSpecification"
+        app:layout_constraintBottom_toTopOf="@id/scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cardHouse"
         app:layout_constraintTop_toTopOf="parent">
@@ -135,189 +134,195 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardSpecification"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="0dp"
-        app:cardMaxElevation="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/addProperty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardHouse">
 
-        <LinearLayout
-            android:id="@+id/specifitcations"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSpecification"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="0dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/typo_grotesk"
-                android:text="Price"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:hint="$300.000"
-                android:inputType="numberDecimal"
-                android:textColorHighlight="@color/blue"
-                android:textColorLink="@color/blue"
-                android:textCursorDrawable="@drawable/cursor_primary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/typo_grotesk"
-                android:text="Surface area"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/surfaceArea"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:hint="182.6"
-                android:inputType="numberDecimal"
-                android:textColorHighlight="@color/blue"
-                android:textColorLink="@color/blue"
-                android:textCursorDrawable="@drawable/cursor_primary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/typo_grotesk"
-                android:text="Number of Rooms"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/numberOfRooms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:hint="4"
-                android:inputType="number"
-                android:textColorHighlight="@color/blue"
-                android:textColorLink="@color/blue"
-                android:textCursorDrawable="@drawable/cursor_primary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/typo_grotesk"
-                android:text="Address"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:hint="101 Independence Avenue, S.E"
-                android:inputType="textPersonName"
-                android:textColorHighlight="@color/blue"
-                android:textColorLink="@color/blue"
-                android:textCursorDrawable="@drawable/cursor_primary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/typo_grotesk"
-                android:text="@string/description"
-                android:textColor="@color/dark_grey"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:ems="10"
-                android:fontFamily="sans-serif"
-                android:gravity="start|top"
-
-                android:hint="Insert Description"
-                android:inputType="textMultiLine"
-                android:textColorHighlight="@color/blue"
-                android:textColorLink="@color/blue"
-                android:textCursorDrawable="@drawable/cursor_primary"
-                android:textSize="14sp" />
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
 
             <LinearLayout
+                android:id="@+id/specifitcations"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="24dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/typo_grotesk"
-                    android:text="This property is available :"
+                    android:text="Price"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:checked="true" />
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:hint="$300.000"
+                    android:inputType="numberDecimal"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/typo_grotesk"
+                    android:text="Surface area"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/surfaceArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:hint="182.6"
+                    android:inputType="numberDecimal"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/typo_grotesk"
+                    android:text="Number of Rooms"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/numberOfRooms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:hint="4"
+                    android:inputType="number"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/typo_grotesk"
+                    android:text="Address"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:hint="101 Independence Avenue, S.E"
+                    android:inputType="textPersonName"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/typo_grotesk"
+                    android:text="@string/description"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:ems="10"
+                    android:fontFamily="sans-serif"
+                    android:gravity="start|top"
+
+                    android:hint="Insert Description"
+                    android:inputType="textMultiLine"
+                    android:textColorHighlight="@color/blue"
+                    android:textColorLink="@color/blue"
+                    android:textCursorDrawable="@drawable/cursor_primary"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/typo_grotesk"
+                        android:text="This property is available :"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:checked="true" />
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
 
     <Button
         android:id="@+id/addProperty"
@@ -336,5 +341,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardSpecification" />
+        app:layout_constraintTop_toBottomOf="@id/scroll" />
 </androidx.constraintlayout.widget.ConstraintLayout>
