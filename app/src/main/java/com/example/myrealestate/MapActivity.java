@@ -32,7 +32,6 @@ import com.google.android.gms.tasks.Task;
 
 public class MapActivity  extends AppCompatActivity implements OnMapReadyCallback , GoogleMap.OnMarkerClickListener {
 
-
     private FusedLocationProviderClient client;
     private SupportMapFragment mapFragment;
     private Task<Location> task;
@@ -45,7 +44,6 @@ public class MapActivity  extends AppCompatActivity implements OnMapReadyCallbac
     private TextView mapAddress;
     private LinearLayout layout1;
     private LinearLayout layout2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +64,6 @@ public class MapActivity  extends AppCompatActivity implements OnMapReadyCallbac
         layout2 = findViewById(R.id.infoLayout2);
         descriptionInfo = findViewById(R.id.descriptionInfo);
         client = LocationServices.getFusedLocationProviderClient(this);
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             task = client.getLastLocation();
@@ -90,7 +87,6 @@ public class MapActivity  extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void getPropertyLocation() {
-
         propertyViewModel.property.observe(this, properties -> {
             for (Property property : properties) {
                 mapFragment.getMapAsync(googleMap -> {
@@ -100,7 +96,7 @@ public class MapActivity  extends AppCompatActivity implements OnMapReadyCallbac
                                 .snippet("Lat:"+property.latitude+ "/Lng:"+property.longitude));
                     else
                         googleMap.addMarker(new MarkerOptions().position(sydney).title(property.buildPropertyName(this))
-                                .snippet("Lat:"+property.latitude+ " Lng:"+property.longitude)
+                                .snippet("Lat:"+property.latitude+ "/Lng:"+property.longitude)
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                     googleMap.setOnMarkerClickListener(this);
                 });

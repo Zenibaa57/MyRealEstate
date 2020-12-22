@@ -1,11 +1,9 @@
 package com.example.myrealestate;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -19,11 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -32,12 +29,18 @@ import com.example.myrealestate.models.Property;
 import com.example.myrealestate.notification.NotificationBuilder;
 import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
-import com.example.myrealestate.viewmodels.AgentViewModel;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -72,11 +75,9 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private int idType;
     private int idStatus;
     private int idNameAgent;
-    public static final String STATE = "state";
     public static final String ID = "property";
     public enum State {ADD, UPDATE,}
     private PropertyViewModel propertyViewModel;
-    private Property property;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +121,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     NotificationBuilder.getInstance(this).buildNotification(this,"ADD NEW PROPERTY",UserPreferences.getUserAgentProfile(this) + " add a new property!");
                 }else if (state == State.UPDATE){
                     getViewInformation();
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                     Map<String, Object> propertyMap= new HashMap<>();
                     propertyMap.put("price",lPrice);
                     propertyMap.put("surfaceArea",lSurfaceArea);
@@ -129,8 +129,8 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     propertyMap.put("address",sAddress);
                     propertyMap.put("latitude",lLatitude);
                     propertyMap.put("longitude",lLongitude);
-                    propertyMap.put("dateOfTheCreationAdvert",lDateOfTheCreationAdvert);
-                    propertyMap.put("dateOfTheUpdateAdvert",timestamp.getTime());
+                  //  propertyMap.put("dateOfTheCreationAdvert",lDateOfTheCreationAdvert);
+                    propertyMap.put("dateOfTheUpdateAdvert",getDate());
                     propertyMap.put("type",idType);
                     propertyMap.put("status",idStatus);
                     propertyMap.put("agentName",idNameAgent);
@@ -231,9 +231,11 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         Toast.makeText(getApplicationContext(), "All field are required!", Toast.LENGTH_SHORT).show();
     }
 
+
     private void getViewInformation() {
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+     //   Timestamp timestamp = new Timestamp(getDate());
+        long dateNow = getDate();
         lPrice = Double.parseDouble(String.valueOf(price.getText()));
         lSurfaceArea = Double.parseDouble(String.valueOf(surfaceArea.getText()));
         iNumberOfRoom = Integer.parseInt(String.valueOf(numberOfRooms.getText()));
@@ -242,8 +244,8 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
         ArrayList location = GeoLocation.getAddress(sAddress,this);
         lLatitude = (double) location.get(0);
         lLongitude = (double) location.get(1);
-        lDateOfTheCreationAdvert = timestamp.getTime();
-        lDateOfTheUpdateAdvert = timestamp.getTime();
+        lDateOfTheCreationAdvert = dateNow;
+        lDateOfTheUpdateAdvert = dateNow;
         bStatus = checkBox.isChecked();
         sNameAgent = UserPreferences.getUserAgentProfile(this);
         idType = RealEstateRepository.getInstance(this).getTypeByName(sType);
@@ -278,5 +280,10 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     .show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public Long getDate(){
+        long millis = new java.util.Date().getTime();
+        return millis;
     }
 }

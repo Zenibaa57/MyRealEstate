@@ -12,13 +12,13 @@ import java.util.logging.Handler;
 
 public class GeoLocation {
 
-    public static ArrayList getAddress (String locationAdress, Context context){
+    public static ArrayList getAddress (String locationAdress, Context context) {
 
         List<Double> location = new ArrayList<>();
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 try {
-                    List addressList = geocoder.getFromLocationName(locationAdress,1);
-                    if (addressList != null && addressList.size() > 0){
+                    List addressList = geocoder.getFromLocationName(locationAdress, 1);
+                    if (addressList != null && addressList.size() > 0) {
                         Address address = (Address) addressList.get(0);
                         double latitude = address.getLatitude();
                         double longitude = address.getLongitude();
@@ -28,6 +28,7 @@ public class GeoLocation {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
         return (ArrayList) location;
     }
 

@@ -44,7 +44,7 @@ public class PropertyListActivity extends AppCompatActivity {
      private EditText maxSurface;
      private EditText minRooms;
      private EditText maxRooms;
-    private ImageButton imageButton;
+     private ImageButton imageButton;
      private double minIPrice;
      private double maxIPrice;
      private double minISurface;
@@ -98,12 +98,14 @@ public class PropertyListActivity extends AppCompatActivity {
         maxSurface =  bottomView.findViewById(R.id.filterMaxSurface);
         minRooms =  bottomView.findViewById(R.id.filterMinRooms);
         maxRooms =  bottomView.findViewById(R.id.filterMaxRooms);
+
         minIPrice =0.0;
         maxIPrice=0.0;
         minISurface=0.0;
         maxISurface=0.0;
         minIRooms=0;
         maxIRooms=0;
+
         bottomView.findViewById(R.id.buttonFilter).setOnClickListener(view -> {
 
             if (!TextUtils.isEmpty(minPrice.getText()) && !TextUtils.isEmpty(maxPrice.getText())){
@@ -114,7 +116,6 @@ public class PropertyListActivity extends AppCompatActivity {
                     return;
                 }
             }
-
             if (!TextUtils.isEmpty(minSurface.getText()) && !TextUtils.isEmpty(maxSurface.getText())){
                 minISurface = Double.parseDouble(String.valueOf(minSurface.getText()));
                 maxISurface = Double.parseDouble(String.valueOf(maxSurface.getText()));
@@ -123,7 +124,6 @@ public class PropertyListActivity extends AppCompatActivity {
                     return;
                 }
             }
-
             if (!TextUtils.isEmpty(minRooms.getText()) && !TextUtils.isEmpty(maxRooms.getText())) {
                 minIRooms = Integer.parseInt(String.valueOf(minRooms.getText()));
                 maxIRooms = Integer.parseInt(String.valueOf(maxRooms.getText()));
@@ -228,7 +228,6 @@ public class PropertyListActivity extends AppCompatActivity {
                     }
                 }
             }
-
             final PropertyAdapter propertyAdapter = new PropertyAdapter(propertyFiltered,this);
             realEstateRecyclerView.setAdapter(propertyAdapter);
         });

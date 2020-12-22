@@ -1,7 +1,9 @@
 package com.example.myrealestate.models;
 
 import android.content.Context;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -11,6 +13,13 @@ import com.example.myrealestate.repository.RealEstateRepository;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.TimeZone;
 
 @Entity(tableName = "Property",
         foreignKeys = {
@@ -89,4 +98,5 @@ public class Property implements Serializable {
         }
         return resulat;
     }
+
 }

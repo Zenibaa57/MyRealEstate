@@ -22,8 +22,10 @@ import com.example.myrealestate.preference.UserPreferences;
 import com.example.myrealestate.repository.RealEstateRepository;
 import com.example.myrealestate.viewmodels.PropertyViewModel;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -138,10 +140,8 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
                     latitudeField.setText(String.valueOf(liveData.latitude));
                     longitudeField.setText(String.valueOf(liveData.longitude));
                     descriptionField.setText(liveData.description);
-                    Timestamp timestampCreation = new Timestamp(liveData.dateOfTheCreationAdvert);
-                    Timestamp timestampUpdate = new Timestamp(liveData.dateOfTheUpdateAdvert);
-                    creationField.setText(String.valueOf(timestampCreation));
-                    updateField.setText(String.valueOf(timestampUpdate));
+                    creationField.setText(longtoString(liveData.dateOfTheCreationAdvert));
+                    updateField.setText(longtoString(liveData.dateOfTheUpdateAdvert));
                     typeImage.setImageResource(liveData.getPlace(this));
                     typeField.setText(type);
                     agentField.setText(agentName);
@@ -180,5 +180,12 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         df.setMaximumFractionDigits (2) ;
         df.setDecimalSeparatorAlwaysShown (true) ;
         return df.format((price));
+    }
+
+    public String longtoString(long val){
+        Date date=new Date(val);
+        SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String dateText = df2.format(date);
+        return dateText;
     }
 }

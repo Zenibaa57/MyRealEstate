@@ -33,9 +33,8 @@ public interface PropertyDao extends IPropertyService {
     void deletePropertyById (int id);
 
     @Query("UPDATE Property SET `price` = :price, `surfaceArea`= :surfaceArea,`numberOfRoom` = :numberOfRoom, `description`= :description," +
-            "`address` = :address, `latitude`= :latitude, `longitude`= :longitude, `dateOfTheCreationAdvert`= :dateOfTheCreationAdvert" +
-            ", `dateOfTheUpdateAdvert`= :dateOfTheUpdateAdvert, `typeId`= :typeId, `propertyStatusId`= :propertyStatusId, " +
-            "`agentId`= :agentId WHERE id = :id")
+            "`address` = :address, `latitude`= :latitude, `longitude`= :longitude, `dateOfTheUpdateAdvert`= :dateOfTheUpdateAdvert," +
+            " `typeId`= :typeId, `propertyStatusId`= :propertyStatusId, `agentId`= :agentId WHERE id = :id")
     void updateProperty(double price,double surfaceArea, int numberOfRoom,String description,String address, double latitude, double longitude,
-                     long dateOfTheCreationAdvert, long dateOfTheUpdateAdvert, int typeId, int propertyStatusId,int agentId, int id);
+                      long dateOfTheUpdateAdvert, int typeId, int propertyStatusId,int agentId, int id);
 }

@@ -98,7 +98,7 @@ public final class RealEstateRepository {
     public void updateProperty(Map<String, Object> map ) {
         myRealEstateDatabase.propertyDao().updateProperty((Double) map.get("price"),(Double)map.get("surfaceArea"),(Integer) map.get("numberOfRoom"),
                 (String) map.get("description"),  (String) map.get("address"),(Double)map.get("latitude"),(Double)map.get("longitude")
-                , (Long) map.get("dateOfTheCreationAdvert"), (Long) map.get("dateOfTheUpdateAdvert"),(Integer) map.get("type"),(Integer)map.get("status")
+                , (Long) map.get("dateOfTheUpdateAdvert"),(Integer) map.get("type"),(Integer)map.get("status")
                 ,(Integer)map.get("agentName"),(Integer)map.get("id"));
     }
 

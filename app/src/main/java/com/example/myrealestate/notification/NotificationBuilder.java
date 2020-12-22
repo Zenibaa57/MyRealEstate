@@ -47,7 +47,7 @@ public class NotificationBuilder {
         final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, notificationChannelId);
         notificationBuilder.setContentTitle(title);
         notificationBuilder.setContentText(body);
-        notificationBuilder.setSmallIcon(R.drawable.home);
+        notificationBuilder.setSmallIcon(R.drawable.type);
         notificationBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
         notificationBuilder.setAutoCancel(true);
         notificationBuilder.setChannelId(notificationChannelId);
