@@ -80,7 +80,7 @@
             android:foregroundGravity="center"
             android:padding="1dp"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_loupe" />
+            app:srcCompat="@drawable/ic_cancel" />
 
     </LinearLayout>
 

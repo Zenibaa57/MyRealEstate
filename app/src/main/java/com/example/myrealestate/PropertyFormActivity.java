@@ -129,7 +129,6 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
                     propertyMap.put("address",sAddress);
                     propertyMap.put("latitude",lLatitude);
                     propertyMap.put("longitude",lLongitude);
-                  //  propertyMap.put("dateOfTheCreationAdvert",lDateOfTheCreationAdvert);
                     propertyMap.put("dateOfTheUpdateAdvert",getDate());
                     propertyMap.put("type",idType);
                     propertyMap.put("status",idStatus);

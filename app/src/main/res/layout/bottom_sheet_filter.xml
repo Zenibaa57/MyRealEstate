@@ -14,6 +14,7 @@
         android:fontFamily="@font/typo_grotesk"
         android:text="Search filter"
         android:textColor="@color/dark_grey"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/divider3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/sLayout"
@@ -55,15 +56,15 @@
             android:fontFamily="@font/typo_grotesk"
             android:text="@string/price"
             android:textColor="@color/dark_grey"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/filterMinPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_weight="2"
             android:background="@android:color/transparent"
             android:ems="10"
@@ -86,10 +87,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/rLayout"
+        app:layout_constraintBottom_toTopOf="@id/dLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pLayout">
@@ -102,15 +103,15 @@
             android:fontFamily="@font/typo_grotesk"
             android:text="@string/surface"
             android:textColor="@color/dark_grey"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/filterMinSurface"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
@@ -129,18 +130,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/rLayout"
+        android:id="@+id/aLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/buttonFilter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sLayout">
+        app:layout_constraintTop_toBottomOf="@id/dLayout">
 
         <TextView
             android:id="@+id/textView20"
@@ -148,32 +149,66 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:fontFamily="@font/typo_grotesk"
-            android:text="@string/rooms"
+            android:text="Availability"
             android:textColor="@color/dark_grey"
-            android:textSize="18sp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkAvailability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0"
+            android:checked="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/aLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sLayout">
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:fontFamily="@font/typo_grotesk"
+            android:text="Period (2020/01/30)"
+            android:textColor="@color/dark_grey"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/filterMinRooms"
+            android:id="@+id/startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="min"
-            android:inputType="number" />
+            android:hint="Start"
+            android:inputType="date" />
 
         <EditText
-            android:id="@+id/filterMaxRooms"
+            android:id="@+id/endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="max"
-            android:inputType="number" />
+            android:hint="End"
+            android:inputType="date" />
     </LinearLayout>
 
     <Button
