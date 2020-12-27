@@ -3,6 +3,8 @@ package com.example.myrealestate;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -10,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -187,5 +191,24 @@ public class PropertyDetailsActivity extends AppCompatActivity implements View.O
         SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String dateText = df2.format(date);
         return dateText;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_simulattor, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        //Boite de dialogue lors de la suppression
+        if (item.getItemId() == R.id.simulator)
+        {
+            final Intent intent = new Intent(this, SimulatorActivity.class);
+            intent.putExtra(SimulatorActivity.PRICE, price);
+            this.startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

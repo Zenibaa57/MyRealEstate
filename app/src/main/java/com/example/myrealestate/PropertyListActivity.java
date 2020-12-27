@@ -60,7 +60,7 @@ public class PropertyListActivity extends AppCompatActivity {
      private double maxISurface;
      private Date startSDate;
      private Date endSDate;
-     private boolean bAvailability;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

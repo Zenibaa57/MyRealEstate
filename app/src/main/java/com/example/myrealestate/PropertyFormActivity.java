@@ -217,6 +217,10 @@ public class PropertyFormActivity extends AppCompatActivity implements View.OnCl
     private boolean checkMandatoryField() {
 
         boolean allFieldAreCompleted = false;
+        if(Double.parseDouble( String.valueOf(price.getText())) == 0) {
+            Toast.makeText(getApplicationContext(), "Price must be more than 0 dollar", Toast.LENGTH_SHORT).show();
+            return allFieldAreCompleted;
+        }
         if ((cardGarage.isSelected() || cardHouse.isSelected() || cardBuilding.isSelected()) &&
                 !TextUtils.isEmpty(price.getText()) && !TextUtils.isEmpty(surfaceArea.getText())
                 && !TextUtils.isEmpty(address.getText()) && !TextUtils.isEmpty(numberOfRooms.getText())

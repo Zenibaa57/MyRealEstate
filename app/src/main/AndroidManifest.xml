@@ -42,6 +42,11 @@
             android:parentActivityName=".PropertyListActivity"
             android:label=""/>
 
+        <activity
+            android:name=".SimulatorActivity"
+            android:parentActivityName=".PropertyListActivity"
+            android:label=""/>
+
     </application>
 
 </manifest>
