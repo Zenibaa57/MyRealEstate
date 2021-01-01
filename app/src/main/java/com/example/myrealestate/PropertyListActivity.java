@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
 public class PropertyListActivity extends AppCompatActivity {
 
      private FloatingActionButton addProperty;
-     private TextView what;
+     private TextView who;
      private RecyclerView realEstateRecyclerView;
      private PropertyViewModel propertyViewModel;
      private View searchLayout;
@@ -71,7 +71,7 @@ public class PropertyListActivity extends AppCompatActivity {
         Window window = this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.blue));
         setContentView(R.layout.real_estate_list);
-        what = findViewById(R.id.what);
+        who = findViewById(R.id.who);
         addProperty = findViewById(R.id.addBusiness);
         addProperty = findViewById(R.id.addBusiness);
         searchLayout = findViewById(R.id.searchLayout);
@@ -304,6 +304,6 @@ public class PropertyListActivity extends AppCompatActivity {
     private void restoreUserAgentProfile() {
         final String userLogin = UserPreferences.getUserAgentProfile(this);
         if (TextUtils.isEmpty(userLogin) == false) {
-            what.setText(userLogin); }
+            who.setText(userLogin); }
     }
 }

@@ -41,7 +41,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_button"
                 android:fontFamily="@font/typo_grotesk"
-                android:text="CONVERT TO €"
+                android:text="@string/convert"
 
                 android:textColor="#FFFFFF" />
 
@@ -55,7 +55,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_button"
                 android:fontFamily="@font/typo_grotesk"
-                android:text="EDIT PROPERTY"
+                android:text="@string/edit"
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -68,7 +68,7 @@
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_red_button"
                 android:fontFamily="@font/typo_grotesk"
-                android:text="DELETE PROPERTY"
+                android:text="@string/delete"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -174,7 +174,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,7 +210,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -246,7 +246,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -281,7 +281,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
 
                 </LinearLayout>
 
@@ -317,7 +317,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
 
                 </LinearLayout>
 
@@ -353,7 +353,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
 
                 </LinearLayout>
 
@@ -380,7 +380,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
-                        android:text="Agents"
+                        android:text="@string/agents"
                         android:textStyle="bold" />
 
                     <TextView
@@ -390,7 +390,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
 
                 </LinearLayout>
 
@@ -465,7 +465,7 @@
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:text="Creation advert :"
+                        android:text="@string/creation_advert"
                         android:textStyle="bold" />
 
                     <TextView
@@ -474,7 +474,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -489,7 +489,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="20dp"
-                        android:text="Update advert :"
+                        android:text="@string/update_advert"
                         android:textStyle="bold" />
 
                     <TextView
@@ -500,7 +500,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="20dp"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="@string/textview" />
                 </LinearLayout>
 
             </LinearLayout>

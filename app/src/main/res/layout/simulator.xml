@@ -35,7 +35,7 @@
             android:layout_marginBottom="30dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="TextView"
+            android:text="@string/textview"
             android:textColor="@color/dark_grey"
             android:textSize="24sp" />
 
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/typo_grotesk"
-                android:text="Interest Rate :"
+                android:text="@string/interest_rate"
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
 
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/typo_grotesk"
-                android:text="Loan Period :"
+                android:text="@string/loan_period"
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
 
@@ -125,7 +125,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/typo_grotesk"
-        android:text="Calculate"
+        android:text="@string/calculate"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

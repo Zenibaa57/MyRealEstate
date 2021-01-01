@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Villa Sherbrook Forest,"
+        android:text="@string/place_name"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/garage"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
         android:layout_marginBottom="24dp"
-        android:text="3th place of republic"
+        android:text="@string/place_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/location"
         app:layout_constraintTop_toBottomOf="@id/placeName" />

@@ -45,7 +45,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk"
                 android:gravity="center"
-                android:text="Garage"
+                android:text="@string/garage"
                 android:textColor="@color/dark_blue" />
         </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk"
                 android:gravity="center"
-                android:text="House"
+                android:text="@string/house"
                 android:textColor="@color/dark_blue" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -128,7 +128,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/typo_grotesk"
                 android:gravity="center"
-                android:text="Apartment "
+                android:text="@string/apartment"
                 android:textColor="@color/dark_blue" />
         </LinearLayout>
 
@@ -168,7 +168,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/typo_grotesk"
-                    android:text="Price"
+                    android:text="@string/price"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
@@ -180,7 +180,7 @@
                     android:layout_marginEnd="24dp"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="$300.000"
+                    android:hint="@string/price_hint"
                     android:inputType="numberDecimal"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -194,7 +194,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/typo_grotesk"
-                    android:text="Surface area"
+                    android:text="@string/surface"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
@@ -206,7 +206,7 @@
                     android:layout_marginEnd="24dp"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="182.6"
+                    android:hint="@string/surface_hint"
                     android:inputType="numberDecimal"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -220,7 +220,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/typo_grotesk"
-                    android:text="Number of Rooms"
+                    android:text="@string/rooms"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
@@ -232,7 +232,7 @@
                     android:layout_marginEnd="24dp"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="4"
+                    android:hint="@string/rooms_hint"
                     android:inputType="number"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -246,7 +246,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/typo_grotesk"
-                    android:text="Address"
+                    android:text="@string/address"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp" />
 
@@ -258,7 +258,7 @@
                     android:layout_marginEnd="24dp"
                     android:ems="10"
                     android:fontFamily="sans-serif"
-                    android:hint="101 Independence Avenue, S.E"
+                    android:hint="@string/address_hint"
                     android:inputType="textPersonName"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -286,7 +286,7 @@
                     android:fontFamily="sans-serif"
                     android:gravity="start|top"
 
-                    android:hint="Insert Description"
+                    android:hint="@string/description_hint"
                     android:inputType="textMultiLine"
                     android:textColorHighlight="@color/blue"
                     android:textColorLink="@color/blue"
@@ -307,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:fontFamily="@font/typo_grotesk"
-                        android:text="This property is available :"
+                        android:text="@string/available"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp" />
 

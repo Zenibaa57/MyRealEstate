@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/typo_grotesk"
-        android:text="Search filter"
+        android:text="@string/search_filter"
         android:textColor="@color/dark_grey"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/divider3"
@@ -68,7 +68,7 @@
             android:layout_weight="2"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="min"
+            android:hint="@string/min"
             android:inputType="number" />
 
         <EditText
@@ -78,7 +78,7 @@
             android:layout_weight="2"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="max"
+            android:hint="@string/max"
             android:inputType="number" />
     </LinearLayout>
 
@@ -115,7 +115,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="min"
+            android:hint="@string/min"
             android:inputType="number" />
 
         <EditText
@@ -125,7 +125,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="max"
+            android:hint="@string/max"
             android:inputType="number" />
     </LinearLayout>
 
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:fontFamily="@font/typo_grotesk"
-            android:text="Availability"
+            android:text="@string/availability"
             android:textColor="@color/dark_grey"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -183,7 +183,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:fontFamily="@font/typo_grotesk"
-            android:text="Period (2020/01/30)"
+            android:text="@string/period"
             android:textColor="@color/dark_grey"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -197,7 +197,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="Start"
+            android:hint="@string/start"
             android:inputType="date" />
 
         <EditText
@@ -207,7 +207,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:ems="10"
-            android:hint="End"
+            android:hint="@string/end"
             android:inputType="date" />
     </LinearLayout>
 
@@ -221,7 +221,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/typo_grotesk"
-        android:text="Apply search filter"
+        android:text="@string/apply_search"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
