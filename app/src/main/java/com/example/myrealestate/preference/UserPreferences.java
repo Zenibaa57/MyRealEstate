@@ -12,6 +12,8 @@ public abstract class UserPreferences {
 
     private UserPreferences() {}
 
+    //Sauvgarde les données personelles de l'agent (nom)
+
     public static void saveUserAgentProfile(@NonNull Context context, @NonNull String login) {
         final SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         final SharedPreferences.Editor editor = defaultSharedPreferences.edit();
