@@ -14,6 +14,8 @@ public class GeoLocation {
 
     public static ArrayList getAddress (String locationAdress, Context context) {
 
+        //Retourne une liste de position (Long, Lat)
+
         List<Double> location = new ArrayList<>();
                 Geocoder geocoder = new Geocoder(context, Locale.getDefault());
                 try {

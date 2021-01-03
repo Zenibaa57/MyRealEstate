@@ -14,6 +14,7 @@ import java.util.logging.Handler;
 
 public class TypeViewModel extends AndroidViewModel {
 
+    //Design patter MVVM
     public TypeViewModel(@NonNull Application application) {
         super(application);
 

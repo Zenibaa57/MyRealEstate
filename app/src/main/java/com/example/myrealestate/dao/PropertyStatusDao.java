@@ -9,6 +9,8 @@ import com.example.myrealestate.service.IPropertyStatusService;
 @Dao
 public interface PropertyStatusDao extends IPropertyStatusService {
 
+    //Requêtes de la BDD, interface (contrat)
+
     @Query("SELECT id FROM PropertyStatus WHERE isAvaible = :status") int getStatusByAvailability (boolean status);
 
     @Override

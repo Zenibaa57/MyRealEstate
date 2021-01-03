@@ -6,6 +6,7 @@ import retrofit2.http.Query;
 
 public interface IExchangeAPI {
 
+    //Requêtes API
     @GET("latest?")
     Call<UsdToEur> getUsdToEur(@Query("base") String base);
 }

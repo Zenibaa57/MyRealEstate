@@ -16,6 +16,8 @@ import com.example.myrealestate.repository.RealEstateRepository;
 
 public class NotificationBuilder {
 
+    //Buidler de notification à la demande.
+
     private static volatile NotificationBuilder instance;
     NotificationManagerCompat notificationManagerCompat;
     final String notificationChannelId = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? "MyChannel" : null;

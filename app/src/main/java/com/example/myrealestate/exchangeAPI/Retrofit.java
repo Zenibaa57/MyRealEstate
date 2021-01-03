@@ -11,14 +11,15 @@ public class Retrofit {
 
     private static volatile Retrofit instance;
 
+
+    //Singleton = Thread safe.
     public Retrofit(Context context) {
     }
 
     public static Retrofit getInstance(Context context) {
         if (instance == null) {
             synchronized (RealEstateRepository.class) {
-                if (instance == null)
-                    instance = new Retrofit(context);
+                if (instance == null) instance = new Retrofit(context);
             }
         }
         return instance;

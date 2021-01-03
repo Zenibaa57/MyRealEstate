@@ -12,6 +12,8 @@ import com.example.myrealestate.service.ITypeService;
 @Dao
 public interface TypeDao extends ITypeService {
 
+    //Requêtes de la BDD, interface (contrat)
+
     @Override
     @Query("SELECT id FROM Type WHERE type = :type") int getTypeByName (String type);
 

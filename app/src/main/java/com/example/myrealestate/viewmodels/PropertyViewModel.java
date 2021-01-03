@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PropertyViewModel extends AndroidViewModel {
 
-
+    //Design patter MVVM
     public PropertyViewModel(@NonNull Application application) {
         super(application);
     }

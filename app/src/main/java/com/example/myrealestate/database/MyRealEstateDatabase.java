@@ -13,6 +13,8 @@ import com.example.myrealestate.models.PropertyStatus;
 import com.example.myrealestate.models.Type;
 
 @Database(entities = { Property.class, Agent.class, PropertyStatus.class, Type.class}, version = 1, exportSchema = false)
+
+//BDD et ses différentes tables
 public abstract class MyRealEstateDatabase extends RoomDatabase {
     public abstract PropertyDao propertyDao();
     public abstract AgentDao agentDao();

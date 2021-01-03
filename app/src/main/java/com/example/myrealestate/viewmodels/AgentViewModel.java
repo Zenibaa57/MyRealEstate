@@ -12,6 +12,7 @@ import java.util.List;
 
 public class AgentViewModel extends AndroidViewModel {
 
+    //Design patter MVVM
     public final LiveData<List<Agent>> agents = RealEstateRepository.getInstance(getApplication()).getAgent();
 
     public AgentViewModel(@NonNull Application application) {

@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class UsdToEur {
 
+
+     //Serealization JSOn to object
+
     @SerializedName("rates")
     @Expose
     public Rates rates;

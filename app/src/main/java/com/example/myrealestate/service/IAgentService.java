@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IAgentService {
 
+    //Interface, contrat défini
     LiveData<List<Agent>> getAgent();
 
     int getAgentNameByName(String firstname);

@@ -34,6 +34,8 @@ public final class RealEstateRepository {
 
     private RealEstateRepository(Context context) {
 
+        //Initialisation de la base
+
         myRealEstateDatabase = Room.databaseBuilder(context, MyRealEstateDatabase.class,"RealEstate-database").allowMainThreadQueries().fallbackToDestructiveMigration().addCallback(new RoomDatabase.Callback() {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
